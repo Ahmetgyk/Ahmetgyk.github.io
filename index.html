@@ -199,6 +199,25 @@ main{padding:76px 16px 100px;display:flex;flex-direction:column;gap:24px}
 .int-opt:hover{border-color:var(--or);color:var(--or)}
 .int-opt.on{background:var(--or);border-color:var(--or);color:#fff}
 
+
+/* METRICS HISTORY */
+.mh-entry{background:var(--sdim);border-radius:8px;padding:10px 12px;margin-bottom:8px;border:1px solid rgba(89,65,56,.15)}
+.mh-date{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--or);margin-bottom:8px;display:flex;align-items:center;justify-content:space-between}
+.mh-del{background:rgba(255,80,80,.12);border:none;border-radius:4px;color:#ff8080;cursor:pointer;font-size:12px;padding:2px 8px;transition:all .15s}
+.mh-del:hover{background:#c0392b;color:#fff}
+.mh-grid{display:grid;grid-template-columns:repeat(4,1fr);gap:6px}
+.mh-cell{text-align:center}
+.mh-val{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:600;color:var(--on)}
+.mh-lbl{font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px}
+.mh-empty{text-align:center;padding:20px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;font-size:11px}
+.met-input-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.met-inp-card{background:var(--bg3);border-radius:6px;padding:8px 10px;border:1px solid rgba(89,65,56,.15)}
+.met-inp-lbl{font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.met-inp-row{display:flex;align-items:center;gap:4px}
+.met-inp-row input{flex:1;background:transparent;border:none;border-bottom:1px solid rgba(89,65,56,.3);color:var(--on);font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:600;padding:2px 4px;outline:none;text-align:center;width:100%}
+.met-inp-row input:focus{border-bottom-color:var(--or)}
+.met-inp-unit{font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;flex-shrink:0}
+
 /* EXERCISE MANAGER */
 .em-tabs{display:flex;gap:4px;margin-bottom:16px}
 .em-tab{flex:1;padding:9px;border:1px solid var(--outline);border-radius:4px;background:transparent;color:var(--text-faint);font-family:'Barlow Condensed',sans-serif;font-size:13px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase;transition:all .2s}
@@ -287,7 +306,7 @@ section:nth-child(4){animation-delay:.15s}section:nth-child(5){animation-delay:.
   </div>
   <!-- STORAGE STATUS -->
   <div id="storageInfo" style="margin-top:8px;padding:6px 10px;background:rgba(97,222,138,.06);border:1px solid rgba(97,222,138,.15);border-radius:6px;display:flex;align-items:center;justify-content:space-between">
-    <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint)">💾 <span id="storageKey">localStorage · form_ahmet_v6</span></span>
+    <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint)"><span id="storageKey">localStorage · form_ahmet_v6</span></span>
     <span style="font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--green)" id="storageSize">—</span>
   </div>
 </section>
@@ -341,6 +360,8 @@ section:nth-child(4){animation-delay:.15s}section:nth-child(5){animation-delay:.
           <path class="mp" data-m="hamstrings" data-n="Arka Bacak" fill="#784212" fill-opacity="0" stroke="none" d="M299,196h1v2h-1ZM359,196h1v2h-1ZM299,198h2v1h-2ZM358,198h2v1h-2ZM299,199h3v2h-3ZM357,199h3v1h-3ZM326,200h1v1h-1ZM332,200h1v1h-1ZM356,200h4v1h-4ZM299,201h5v1h-5ZM324,201h3v1h-3ZM332,201h3v1h-3ZM355,201h5v1h-5ZM299,202h7v3h-7ZM323,202h3v1h-3ZM332,202h4v1h-4ZM353,202h7v3h-7ZM309,203h1v1h-1ZM321,203h5v1h-5ZM333,203h4v1h-4ZM349,203h1v1h-1ZM308,204h6v1h-6ZM318,204h8v1h-8ZM333,204h7v1h-7ZM345,204h6v2h-6ZM299,205h6v3h-6ZM308,205h5v2h-5ZM319,205h7v2h-7ZM334,205h6v1h-6ZM354,205h6v4h-6ZM333,206h7v1h-7ZM346,206h5v1h-5ZM307,207h6v3h-6ZM316,207h1v1h-1ZM319,207h6v1h-6ZM333,207h6v4h-6ZM342,207h2v3h-2ZM346,207h6v2h-6ZM299,208h5v5h-5ZM315,208h2v2h-2ZM320,208h5v3h-5ZM347,209h5v2h-5ZM355,209h5v3h-5ZM306,210h7v1h-7ZM315,210h3v2h-3ZM341,210h3v2h-3ZM306,211h6v5h-6ZM321,211h4v5h-4ZM333,211h5v2h-5ZM347,211h6v4h-6ZM315,212h4v2h-4ZM341,212h4v1h-4ZM355,212h4v1h-4ZM300,213h3v5h-3ZM334,213h4v1h-4ZM340,213h5v3h-5ZM356,213h3v7h-3ZM314,214h5v4h-5ZM334,214h3v6h-3ZM347,215h7v4h-7ZM305,216h7v1h-7ZM322,216h3v2h-3ZM339,216h6v8h-6ZM305,217h6v4h-6ZM300,218h2v3h-2ZM314,218h6v5h-6ZM322,218h2v2h-2ZM348,219h6v4h-6ZM323,220h1v5h-1ZM335,220h1v6h-1ZM357,220h2v1h-2ZM301,221h1v3h-1ZM304,221h7v8h-7ZM357,221h1v6h-1ZM313,223h7v3h-7ZM348,223h7v8h-7ZM339,224h7v2h-7ZM313,226h6v4h-6ZM340,226h6v4h-6ZM321,228h1v5h-1ZM303,229h8v2h-8ZM313,230h5v4h-5ZM341,230h5v5h-5ZM303,231h7v7h-7ZM337,231h2v6h-2ZM348,231h8v5h-8ZM320,233h2v5h-2ZM313,234h4v7h-4ZM342,235h4v6h-4ZM349,236h7v2h-7ZM337,237h3v3h-3ZM304,238h6v4h-6ZM319,238h3v3h-3ZM349,238h6v2h-6ZM338,240h2v9h-2ZM350,240h5v5h-5ZM313,241h3v1h-3ZM319,241h2v6h-2ZM342,241h3v3h-3ZM304,242h5v2h-5ZM314,242h2v6h-2ZM304,244h4v2h-4ZM343,244h2v5h-2ZM351,245h5v1h-5ZM304,246h3v1h-3ZM352,246h4v2h-4ZM303,247h4v2h-4ZM319,247h1v1h-1ZM315,248h1v6h-1ZM318,248h2v1h-2ZM353,248h3v3h-3ZM303,249h3v1h-3ZM319,249h1v6h-1ZM339,249h1v8h-1ZM343,249h1v3h-1ZM303,250h2v2h-2ZM354,251h2v1h-2ZM303,252h1v2h-1ZM342,252h2v2h-2ZM355,252h1v1h-1ZM342,254h1v4h-1Z" onclick="selM(this)"/>
           <path class="mp" data-m="calves" data-n="Baldır" fill="#1a5276" fill-opacity="0" stroke="none" d="M309,248h1v2h-1ZM349,248h1v2h-1ZM308,250h2v2h-2ZM312,250h1v7h-1ZM349,250h2v2h-2ZM307,252h3v1h-3ZM346,252h1v4h-1ZM349,252h3v2h-3ZM306,253h4v2h-4ZM349,254h4v1h-4ZM305,255h5v1h-5ZM349,255h5v2h-5ZM304,256h6v2h-6ZM345,256h2v5h-2ZM312,257h2v4h-2ZM350,257h5v2h-5ZM303,258h7v7h-7ZM350,259h6v7h-6ZM312,261h3v2h-3ZM344,261h3v3h-3ZM312,263h4v11h-4ZM343,264h4v2h-4ZM303,265h6v3h-6ZM342,266h5v2h-5ZM350,266h7v5h-7ZM302,268h7v3h-7ZM342,268h6v10h-6ZM301,271h8v8h-8ZM350,271h8v6h-8ZM311,274h5v3h-5ZM311,277h6v5h-6ZM350,277h9v9h-9ZM341,278h7v15h-7ZM300,279h9v7h-9ZM311,282h7v3h-7ZM311,285h8v8h-8ZM300,286h8v3h-8ZM351,286h8v1h-8ZM350,287h9v3h-9ZM301,289h7v2h-7ZM351,290h7v1h-7ZM301,291h6v2h-6ZM352,291h6v1h-6ZM354,292h1v1h-1ZM356,292h2v1h-2ZM301,293h4v2h-4ZM312,293h7v2h-7ZM341,293h6v1h-6ZM353,293h5v1h-5ZM341,294h5v1h-5ZM355,294h1v1h-1ZM357,294h1v1h-1ZM301,295h2v1h-2ZM314,295h1v1h-1ZM316,295h2v1h-2ZM341,295h4v1h-4ZM315,296h3v1h-3ZM342,296h2v1h-2ZM316,297h2v1h-2ZM342,297h1v1h-1Z" onclick="selM(this)"/>
           <path class="mp" data-m="neck" data-n="Boyun" fill="#beb019" fill-opacity="0" stroke="none" d="M114,70h2v1h-2ZM127,70h2v1h-2ZM113,71h7v1h-7ZM123,71h6v4h-6ZM114,72h6v1h-6ZM113,73h7v3h-7ZM123,75h7v2h-7ZM114,76h6v2h-6ZM123,77h6v1h-6ZM115,78h5v2h-5ZM123,78h5v2h-5ZM116,80h4v2h-4ZM123,80h4v2h-4ZM117,82h3v2h-3ZM123,82h3v3h-3ZM118,84h2v2h-2ZM123,85h2v1h-2ZM119,86h1v2h-1ZM123,86h1v2h-1Z" onclick="selM(this)"/>
+
+          <path id="new_body_parts" fill="#bfc0c4" fill-opacity="0.2" stroke="none" pointer-events="none" d="M83,139h1v1h-1ZM81,140h2v1h-2ZM158,140h1v1h-1ZM160,140h1v2h-1ZM162,140h1v1h-1ZM79,141h1v1h-1ZM156,141h3v1h-3ZM162,141h2v1h-2ZM156,142h1v1h-1ZM162,142h3v1h-3ZM95,170h1v4h-1ZM147,172h1v4h-1ZM94,174h1v1h-1ZM94,175h2v1h-2ZM97,175h1v1h-1ZM91,176h1v1h-1ZM93,176h5v1h-5ZM144,176h1v1h-1ZM148,176h1v4h-1ZM93,177h2v1h-2ZM97,177h2v1h-2ZM144,177h2v1h-2ZM92,178h3v1h-3ZM97,178h3v2h-3ZM143,178h3v2h-3ZM91,179h3v1h-3ZM92,180h3v1h-3ZM98,180h2v2h-2ZM143,180h2v2h-2ZM148,180h2v2h-2ZM93,181h1v1h-1ZM92,182h2v3h-2ZM98,182h3v1h-3ZM142,182h2v2h-2ZM149,182h1v1h-1ZM99,183h2v1h-2ZM99,184h3v1h-3ZM141,184h3v1h-3ZM92,185h1v2h-1ZM100,185h2v2h-2ZM141,185h2v2h-2ZM100,187h3v1h-3ZM140,187h2v3h-2ZM101,188h2v2h-2ZM102,190h2v3h-2ZM139,190h2v2h-2ZM140,192h1v1h-1ZM103,193h2v3h-2ZM138,193h2v2h-2ZM137,195h2v3h-2ZM104,196h2v3h-2ZM137,198h1v1h-1ZM105,199h1v1h-1ZM136,199h2v2h-2ZM105,200h2v2h-2ZM136,201h1v1h-1ZM106,202h1v1h-1ZM135,202h2v2h-2ZM106,203h2v2h-2ZM135,204h1v1h-1ZM107,205h1v1h-1ZM134,205h2v2h-2ZM107,206h2v3h-2ZM134,207h1v2h-1ZM108,209h1v1h-1ZM133,209h2v3h-2ZM108,210h2v2h-2ZM109,212h1v2h-1ZM133,212h1v1h-1ZM132,213h2v2h-2ZM109,214h2v2h-2ZM131,215h2v4h-2ZM110,216h1v1h-1ZM110,217h2v3h-2ZM131,219h1v2h-1ZM111,220h1v2h-1ZM130,221h2v2h-2ZM111,222h2v2h-2ZM130,223h1v1h-1ZM112,224h1v2h-1ZM129,224h2v2h-2ZM112,226h2v2h-2ZM129,226h1v3h-1ZM113,228h1v5h-1ZM128,229h2v1h-2ZM128,230h1v6h-1Z"/>
         </svg>
       </div>
     <div class="mpopup" id="mpopup">
@@ -351,11 +372,12 @@ section:nth-child(4){animation-delay:.15s}section:nth-child(5){animation-delay:.
         <span class="mp-s">SEVİYE: <strong id="mpLv">—</strong></span>
         <span class="mp-s">HEDEF: <strong id="mpTg">—</strong></span>
       </div>
+
     </div>
     <div class="map-leg">
-      <div class="ml2"><div class="mld" style="background:#D1D4C9"></div><span class="mlt">Yok</span></div>
-      <div class="ml2"><div class="mld" style="background:#556E53"></div><span class="mlt">Gelişiyor</span></div>
-      <div class="ml2"><div class="mld" style="background:#152A38"></div><span class="mlt">Gelişmiş</span></div>
+      <div class="ml2"><div class="mld" style="background:#152A38"></div><span class="mlt">Yok</span></div>
+      <div class="ml2"><div class="mld" style="background:#D1D4C9"></div><span class="mlt">Gelişiyor</span></div>
+      <div class="ml2"><div class="mld" style="background:#556E53"></div><span class="mlt">Gelişmiş</span></div>
     </div>
   </div>
 </section>
@@ -474,7 +496,50 @@ section:nth-child(4){animation-delay:.15s}section:nth-child(5){animation-delay:.
 <div class="bs" id="metSheet">
   <div class="bsh"></div>
   <div class="bst"><span class="bstl">Ölçümler</span><button class="bsc" onclick="closeMetrics()">✕</button></div>
-  <div class="bsb"><div class="mel" id="metList"></div><button class="sub" onclick="saveMetrics()">KAYDET</button></div>
+  <div class="bsb">
+
+    <!-- Sekme -->
+    <div class="em-tabs" style="margin-bottom:14px">
+      <button class="em-tab active" id="mtab1" onclick="switchMetTab(1)">Geçmiş</button>
+      <button class="em-tab"        id="mtab2" onclick="switchMetTab(2)">Yeni Ölçüm</button>
+      <button class="em-tab"        id="mtab3" onclick="switchMetTab(3)">Değişkenler</button>
+    </div>
+
+    <!-- TAB 1: GEÇMİŞ -->
+    <div id="mtabC1">
+      <div id="metHistList"></div>
+    </div>
+
+    <!-- TAB 2: YENİ ÖLÇÜM -->
+    <div id="mtabC2" style="display:none">
+      <div class="fg">
+        <label class="fl">Tarih</label>
+        <input type="date" class="fi2" id="metDate">
+      </div>
+      <div id="metInputs" style="margin-bottom:14px"></div>
+      <button class="sub" onclick="saveMetrics()">+ KAYDET</button>
+    </div>
+
+    <!-- TAB 3: DEĞİŞKENLER -->
+    <div id="mtabC3" style="display:none">
+      <div id="metFieldList" style="margin-bottom:14px"></div>
+      <div style="background:var(--sdim);border-radius:8px;padding:12px;border:1px solid rgba(89,65,56,.2)">
+        <div class="lbl" style="margin-bottom:10px">Yeni Değişken</div>
+        <div style="display:flex;gap:8px;margin-bottom:8px">
+          <div class="fg" style="flex:2;margin:0">
+            <label class="fl">Ad</label>
+            <input type="text" class="fi2" id="newFieldL" placeholder="örn: Koşu">
+          </div>
+          <div class="fg" style="flex:1;margin:0">
+            <label class="fl">Birim</label>
+            <input type="text" class="fi2" id="newFieldU" placeholder="km">
+          </div>
+        </div>
+        <button class="sub" onclick="addMetField()">+ EKLE</button>
+      </div>
+    </div>
+
+  </div>
 </div>
 
 <!-- RESET CONFIRM -->
@@ -489,6 +554,11 @@ section:nth-child(4){animation-delay:.15s}section:nth-child(5){animation-delay:.
 <div class="toast" id="toast"></div>
 
 <script>
+const DEFAULT_FIELDS=[{k:'boy',l:'Boy',u:'cm'},{k:'kilo',l:'Kilo',u:'kg'},{k:'gogus',l:'Göğüs',u:'cm'},{k:'bel',l:'Bel',u:'cm'},{k:'kalca',l:'Kalça',u:'cm'},{k:'bicep',l:'Bisep',u:'cm'},{k:'but',l:'But',u:'cm'},{k:'baldir',l:'Baldır',u:'cm'}];
+function getMCFG(){ return (D&&D.metFields&&D.metFields.length>0)?D.metFields:DEFAULT_FIELDS; }
+var MCFG=DEFAULT_FIELDS.slice();
+
+
 // ── DATA ──
 const SK='form_ahmet_v6';
 const ld=()=>{
@@ -502,14 +572,20 @@ const ld=()=>{
     if(!d.sessions)   d.sessions=[];
     if(!d.customEx)   d.customEx=[];
     if(!d.level)      d.level=1;
-    if(!d.metrics)    d.metrics={cur:{},prev:{}};
+    if(!d.metrics)    d.metrics={history:[],cur:{},prev:{}};
+    if(!d.metrics.history) d.metrics.history=[];
+    if(!d.metFields) d.metFields=[...DEFAULT_FIELDS];
     if(!d.metrics.cur) d.metrics.cur={};
     if(!d.metrics.prev)d.metrics.prev={};
+    // Eski format migrate: cur varsa history'ye ekle
+    if(Object.keys(d.metrics.cur).length>0 && d.metrics.history.length===0){
+      d.metrics.history=[{date:new Date().toISOString(),values:{...d.metrics.cur}}];
+    }
     return d;
   }catch(e){ return def(); }
 };
 const sv=()=>localStorage.setItem(SK,JSON.stringify(D));
-const def=()=>({scores:{},level:1,muscleLevel:{},metrics:{cur:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0},prev:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0}},sessions:[],customEx:[]});
+const def=()=>({scores:{},level:1,muscleLevel:{},metFields:[...DEFAULT_FIELDS],metrics:{cur:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0},prev:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0}},sessions:[],customEx:[]});
 let D=ld();
 if(!D.customEx)D.customEx=[];
 
@@ -656,41 +732,44 @@ function muscleLvl(m){ return (D.muscleLevel&&D.muscleLevel[m])||1; }
 function muscleTgt(m){ return lvlTgt(muscleLvl(m)); }
 function renderLevel(){
   if(!D.muscleLevel) D.muscleLevel={};
-  var leveled=false;
 
-  // Her kasın seviyesini kontrol et — hedefe ulaştıysa seviye atla
+  // Global seviye: tüm kaslar aynı seviyede ilerler
+  // D.level = mevcut global seviye (başlangıç: 1)
+  if(!D.level) D.level=1;
+  var curLvl=D.level;
+  var tgt=lvlTgt(curLvl);
+
+  // Hedefine ulaşan kasların skorunu tgt'de sabitle (maximum)
   MUSCLES.forEach(function(m){
-    var score=D.scores[m]||0;
-    var mlvl=muscleLvl(m);
-    var tgt=lvlTgt(mlvl);
-    if(score>=tgt){
-      D.muscleLevel[m]=(mlvl+1);
-      D.scores[m]=0; // skoru sıfırla, yeni hedef için başla
-      leveled=true;
-      showToast('⬆ '+( (D.muscleLevel&&D.muscleLevel[m]?MUSCLES_NAME_MAP[m]||m:m) )+' → SEV '+(mlvl+1));
-    }
+    if((D.scores[m]||0)>tgt) D.scores[m]=tgt;
   });
 
-  if(leveled){ sv(); setTimeout(renderAll,300); return; }
+  // Kaç kas bu seviyenin hedefine ulaştı?
+  var done=MUSCLES.filter(function(m){ return (D.scores[m]||0)>=tgt; }).length;
+  var pct=Math.round(done/MUSCLES.length*100);
 
-  // Global seviye = tüm kasların ortalama seviyesi
-  var totalLvl=MUSCLES.reduce(function(a,m){return a+muscleLvl(m);},0);
-  var avgLvl=Math.round(totalLvl/MUSCLES.length*10)/10;
-  var minLvl=Math.min.apply(null,MUSCLES.map(muscleLvl));
-  var maxLvl=Math.max.apply(null,MUSCLES.map(muscleLvl));
-  D.level=minLvl; // genel seviye = en düşük kas seviyesi
+  // Hepsi hedefe ulaştıysa — hep birlikte seviye atla
+  if(done===MUSCLES.length){
+    D.level=curLvl+1;
+    // Tüm skorları sıfırla, yeni seviye başlasın
+    MUSCLES.forEach(function(m){ D.scores[m]=0; });
+    sv();
+    showToast('🏆 SEVİYE '+(curLvl+1)+' — Tüm kaslar birlikte atladı!');
+    setTimeout(renderAll,300);
+    return;
+  }
 
-  // Progress: kaç kas bu "minLvl" seviyesini aştı
-  var aboveMin=MUSCLES.filter(function(m){return muscleLvl(m)>minLvl;}).length;
-  var pct=Math.round(aboveMin/MUSCLES.length*100);
+  // muscleLvl artık global D.level'ı dönsün (popup için)
+  // D.muscleLevel'ı global seviyeyle senkronize et
+  MUSCLES.forEach(function(m){ D.muscleLevel[m]=curLvl; });
 
-  document.getElementById('lvlNum').textContent=minLvl;
-  document.getElementById('lvlTag').textContent=LLBLS[Math.min(minLvl-1,LLBLS.length-1)];
-  document.getElementById('lvlTxt').textContent=aboveMin+' / '+MUSCLES.length+' kas geçti';
+  // UI güncelle
+  document.getElementById('lvlNum').textContent=curLvl;
+  document.getElementById('lvlTag').textContent=LLBLS[Math.min(curLvl-1,LLBLS.length-1)];
+  document.getElementById('lvlTxt').textContent=done+' / '+MUSCLES.length+' kas tamamladı';
   document.getElementById('lvlPct').textContent=pct+'%';
   document.getElementById('lvlFill').style.width=pct+'%';
 
-  // Bireysel kas seviyelerini de güncelle
   renderMusclelevels();
 }
 
@@ -721,8 +800,9 @@ function mColor(score,level){
 }
 function mColorByRatio(score,tgt){
   var t=Math.max(0,Math.min(1,score/tgt));
-  if(t<0.5)return lerp('#D1D4C9','#556E53',t/0.5);
-  return lerp('#556E53','#152A38',(t-0.5)/0.5);
+  // lacivert → açık gri → koyu yeşil
+  if(t<0.5)return lerp('#152A38','#D1D4C9',t/0.5);
+  return lerp('#D1D4C9','#556E53',(t-0.5)/0.5);
 }
 
 // ── MAP ──
@@ -764,13 +844,16 @@ function selM(el){
     p.setAttribute('fill-opacity', p.dataset.m===m ? '0.88' : (sc>0?'0.35':'0.1'));
   });
   selMId=m;
-  const score=D.scores[m]||0,tgt=muscleTgt(m),pct=Math.min(100,Math.round(score/tgt*100));
+  var score=D.scores[m]||0;
+  var curLvl=D.level||1;           // global seviye
+  var tgt=lvlTgt(curLvl);          // bu seviyede gereken hedef
+  var pct=Math.min(100,Math.round(score/tgt*100));
   document.getElementById('mpN').textContent=el.dataset.n;
   document.getElementById('mpSc').textContent=score;
-  document.getElementById('mpLv').textContent=pct<10?'Yok':pct<35?'Zayıf':pct<65?'Gelişiyor':pct<90?'İyi':'Gelişmiş';
-  var mlvl2=muscleLvl(m);
-  document.getElementById('mpTg').textContent=muscleTgt(m)+' (SEV '+mlvl2+')';
-  const f=document.getElementById('mpBF');f.style.width=pct+'%';f.style.background=mColor(score,D.level);
+  document.getElementById('mpTg').textContent=tgt;
+  document.getElementById('mpLv').textContent=curLvl; // global seviye: 1, 2, 3...
+
+  const f=document.getElementById('mpBF');f.style.width=pct+'%';f.style.background=mColorByRatio(score,tgt);
   document.getElementById('mpopup').classList.add('show');
 }
 
@@ -802,11 +885,13 @@ function renderStreak(){
 }
 
 // ── TELEMETRY ──
-const MCFG=[{k:'boy',l:'Boy',u:'cm'},{k:'kilo',l:'Kilo',u:'kg'},{k:'gogus',l:'Göğüs',u:'cm'},{k:'bel',l:'Bel',u:'cm'},{k:'kalca',l:'Kalça',u:'cm'},{k:'bicep',l:'Bisep',u:'cm'},{k:'but',l:'But',u:'cm'},{k:'baldir',l:'Baldır',u:'cm'}];
+// MCFG — yukarıda tanımlandı
 function renderTel(){
-  const c=D.metrics.cur,p=D.metrics.prev;
+  MCFG=getMCFG();
+  const c=D.metrics.cur||{},p=D.metrics.prev||{};
   document.getElementById('telCards').innerHTML=MCFG.map(m=>{
-    const cv=c[m.k]||0,pv=p[m.k]||0,df=Math.round((cv-pv)*10)/10;
+    const cv=c[m.k]||0, pv=p[m.k]||0;
+    const df=Math.round((cv-pv)*10)/10;
     const dh=df>0?`<div class="md3 du">▲ ${df}</div>`:df<0?`<div class="md3 dd">▼ ${Math.abs(df)}</div>`:`<div class="md3 df">— 0.0</div>`;
     return `<div class="gc mc3" onclick="openMetrics()"><div class="ml3">${m.l}</div><div class="mv3">${cv||'—'}<span class="mu3">${m.u}</span></div>${dh}</div>`;
   }).join('');
@@ -1019,17 +1104,237 @@ function emDel(id){
 
 // ── METRICS ──
 function openMetrics(){
-  document.getElementById('metList').innerHTML=MCFG.map(m=>`
-    <div class="mer"><span class="merl">${m.l}</span>
-    <input class="meri" type="number" inputmode="decimal" id="mi${m.k}" value="${D.metrics.cur[m.k]||''}" placeholder="0" step="0.1">
-    <span class="meru">${m.u}</span></div>`).join('');
-  document.getElementById('metOvl').classList.add('show');document.getElementById('metSheet').classList.add('show');
+  MCFG=getMCFG();
+  switchMetTab(1);
+  document.getElementById('metOvl').classList.add('show');
+  document.getElementById('metSheet').classList.add('show');
 }
-function closeMetrics(){document.getElementById('metOvl').classList.remove('show');document.getElementById('metSheet').classList.remove('show');}
+
+function switchMetTab(t){
+  [1,2,3].forEach(i=>{
+    document.getElementById('mtab'+i).classList.toggle('active',i===t);
+    document.getElementById('mtabC'+i).style.display=i===t?'':'none';
+  });
+  if(t===1) renderMetHist();
+  if(t===2) renderMetInputs();
+  if(t===3) renderMetFieldList();
+}
+
+function renderMetInputs(){
+  MCFG=getMCFG();
+  const dateInp=document.getElementById('metDate');
+  if(dateInp) dateInp.value=new Date().toISOString().slice(0,10);
+  const last = getMetHist()[0];
+  document.getElementById('metInputs').innerHTML=
+    '<div style="font-size:10px;color:var(--text-faint);margin-bottom:10px;font-family:JetBrains Mono,monospace">Boş bırakılan alanlar son ölçümden taşınır</div>'+
+    '<div class="met-input-grid">'+
+    MCFG.map(m=>{
+      const lastVal = last?(last.values[m.k]||''):'';
+      return `<div class="met-inp-card">
+        <div class="met-inp-lbl">${m.l}</div>
+        <div class="met-inp-row">
+          <input type="number" inputmode="decimal" id="mi${m.k}"
+            placeholder="${lastVal||'—'}" step="0.1">
+          <span class="met-inp-unit">${m.u}</span>
+        </div>
+        ${lastVal?`<div style="font-size:9px;color:var(--text-faint);text-align:center;margin-top:2px">son: ${lastVal}</div>`:''}
+      </div>`;
+    }).join('')+
+    '</div>';
+}
+
+function renderMetFieldList(){
+  MCFG=getMCFG();
+  const defaults=DEFAULT_FIELDS.map(f=>f.k);
+  document.getElementById('metFieldList').innerHTML=MCFG.map((m,i)=>`
+    <div class="mh-entry" style="display:flex;align-items:center;gap:10px;padding:10px 12px">
+      <div style="flex:1">
+        <div style="font-size:13px;color:var(--on);font-weight:500">${m.l}</div>
+        <div style="font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace">${m.k} · ${m.u}</div>
+      </div>
+      ${!defaults.includes(m.k)?`<button class="mh-del" onclick="delMetField('${m.k}')">× Sil</button>`:'<span style="font-size:10px;color:var(--text-faint)">varsayılan</span>'}
+    </div>`).join('');
+}
+
+function addMetField(){
+  const l=document.getElementById('newFieldL').value.trim();
+  const u=document.getElementById('newFieldU').value.trim()||'';
+  if(!l){showToast('⚠ Alan adı gir!');return;}
+  const k=l.toLowerCase().replace(/[^a-z0-9ğüşıöç]/gi,'_').replace(/_+/g,'_');
+  MCFG=getMCFG();
+  if(MCFG.find(m=>m.k===k)){showToast('⚠ Bu alan zaten var!');return;}
+  if(!D.metFields) D.metFields=[...DEFAULT_FIELDS];
+  D.metFields.push({k,l,u});
+  MCFG=getMCFG();
+  sv();
+  document.getElementById('newFieldL').value='';
+  document.getElementById('newFieldU').value='';
+  renderMetFieldList();
+  renderTel();
+  showToast('✓ "'+l+'" eklendi');
+}
+
+function delMetField(k){
+  if(!confirm('"'+k+'" alanını ve tüm ölçüm verilerini sil?')) return;
+  if(!D.metFields) D.metFields=[...DEFAULT_FIELDS];
+  D.metFields=D.metFields.filter(m=>m.k!==k);
+  // Geçmişten de kaldır
+  const hist=getMetHist();
+  hist.forEach(e=>{delete e.values[k];});
+  MCFG=getMCFG();
+  sv();renderMetFieldList();renderTel();
+  showToast('"'+k+'" silindi');
+}
+
+function renderMetHist(){
+  MCFG=getMCFG();
+  const list=document.getElementById('metHistList');
+  if(!list) return;
+  const hist=getMetHist();
+  if(!hist.length){
+    list.innerHTML='<div class="mh-empty">// henüz ölçüm yok<br>Yeni Ölçüm sekmesinden ekle</div>';
+    return;
+  }
+  list.innerHTML=hist.map((entry,i)=>{
+    const d=new Date(entry.date);
+    const dateStr=d.toLocaleDateString('tr-TR',{day:'2-digit',month:'short',year:'numeric'});
+    const cells=MCFG.map(m=>{
+      const v=entry.values[m.k]||0;
+      const prev=hist[i+1];
+      const pv=prev?(prev.values[m.k]||0):0;
+      const diff=v&&pv?Math.round((v-pv)*10)/10:null;
+      const diffHtml=diff!==null&&diff!==0
+        ?`<span style="font-size:9px;color:${diff>0?'var(--green)':'var(--red)'}">${diff>0?'▲':'▼'}${Math.abs(diff)}</span>`:'';
+      return `<div class="mh-cell">
+        <div class="mh-val" id="mhv_${i}_${m.k}" style="cursor:pointer" onclick="editMetCell(${i},'${m.k}')" title="Düzenle">
+          ${v||'—'}<span style="font-size:9px;color:var(--text-faint)">${v?m.u:''}</span>${diffHtml}
+        </div>
+        <div class="mh-lbl">${m.l}</div>
+      </div>`;
+    }).join('');
+    return `<div class="mh-entry" id="mhentry_${i}">
+      <div class="mh-date">
+        <span>${dateStr}</span>
+        <div style="display:flex;gap:6px">
+          <button class="mh-del" style="background:rgba(97,222,138,.12);color:var(--green)" onclick="editMetEntry(${i})">✏ Düzenle</button>
+          <button class="mh-del" onclick="delMetEntry(${i})">× Sil</button>
+        </div>
+      </div>
+      <div class="mh-grid" id="mhgrid_${i}">${cells}</div>
+    </div>`;
+  }).join('');
+}
+
+function editMetEntry(i){
+  MCFG=getMCFG();
+  const hist=getMetHist();
+  const entry=hist[i];
+  const d=new Date(entry.date);
+  const dateStr=d.toISOString().slice(0,10);
+
+  // İnline edit formu göster
+  const grid=document.getElementById('mhgrid_'+i);
+  grid.innerHTML=`
+    <div style="grid-column:1/-1;display:grid;grid-template-columns:repeat(2,1fr);gap:6px">
+      ${MCFG.map(m=>`
+        <div class="met-inp-card">
+          <div class="met-inp-lbl">${m.l}</div>
+          <div class="met-inp-row">
+            <input type="number" inputmode="decimal" id="edit_${i}_${m.k}"
+              value="${entry.values[m.k]||''}" placeholder="0" step="0.1">
+            <span class="met-inp-unit">${m.u}</span>
+          </div>
+        </div>`).join('')}
+    </div>
+    <div style="grid-column:1/-1;display:flex;gap:6px;margin-top:4px">
+      <button class="sub" style="flex:1;margin:0;padding:8px" onclick="saveMetEntry(${i})">✓ KAYDET</button>
+      <button class="sub" style="flex:none;margin:0;padding:8px;background:var(--stop);color:var(--text-dim)" onclick="renderMetHist()">İPTAL</button>
+    </div>`;
+}
+
+function saveMetEntry(i){
+  MCFG=getMCFG();
+  const hist=getMetHist();
+  const entry=hist[i];
+  MCFG.forEach(m=>{
+    const inp=document.getElementById('edit_'+i+'_'+m.k);
+    if(!inp) return;
+    const v=parseFloat(inp.value);
+    if(!isNaN(v)&&v>0) entry.values[m.k]=v;
+    else if(inp.value.trim()==='') delete entry.values[m.k];
+  });
+  // En güncel kaydı cur'a, bir öncekini prev'e yaz
+  if(hist.length>0) D.metrics.cur={...hist[0].values};
+  if(hist.length>1) D.metrics.prev={...hist[1].values};
+  sv();renderMetHist();renderTel();
+  showToast('✓ Ölçüm güncellendi');
+}
+
+function getMetHist(){
+  if(!D.metrics) D.metrics={history:[],cur:{},prev:{}};
+  if(!D.metrics.history) D.metrics.history=[];
+  return D.metrics.history;
+}
+
+function delMetEntry(i){
+  if(!confirm('Bu ölçümü sil?')) return;
+  const hist=getMetHist();
+  hist.splice(i,1);
+  if(hist.length>0) D.metrics.cur={...hist[0].values};
+  else D.metrics.cur={};
+  if(hist.length>1) D.metrics.prev={...hist[1].values};
+  else D.metrics.prev={};
+  sv();renderMetHist();renderTel();
+  showToast('Ölçüm silindi');
+}
+
+function syncCurPrev(){
+  // cur/prev artık saveMetrics içinde yönetiliyor
+  const hist=getMetHist();
+  if(hist.length>0) D.metrics.cur={...hist[0].values};
+  if(hist.length>1) D.metrics.prev={...hist[1].values};
+}
+function closeMetrics(){
+  document.getElementById('metOvl').classList.remove('show');
+  document.getElementById('metSheet').classList.remove('show');
+}
 function saveMetrics(){
-  const prev={...D.metrics.cur};
-  MCFG.forEach(m=>{const v=parseFloat(document.getElementById(`mi${m.k}`)?.value);if(!isNaN(v)&&v>0)D.metrics.cur[m.k]=v;});
-  D.metrics.prev=prev;sv();closeMetrics();renderTel();showToast('✓ Ölçümler güncellendi');
+  MCFG=getMCFG();
+  // Mevcut değerleri prev'e kopyala (delta için)
+  const prev={...( D.metrics.cur||{} )};
+
+  // Sadece dolu alanları güncelle — boş alanlar prev değerini korur
+  const cur={...prev};
+  let hasNew=false;
+  MCFG.forEach(m=>{
+    const inp=document.getElementById('mi'+m.k);
+    if(!inp) return;
+    const v=parseFloat(inp.value);
+    if(!isNaN(v) && v>0 && inp.value.trim()!==''){
+      cur[m.k]=v;
+      hasNew=true;
+    }
+  });
+  if(!hasNew){showToast('⚠ En az bir ölçüm gir!');return;}
+
+  D.metrics.prev=prev;
+  D.metrics.cur=cur;
+
+  // History'e de ekle (geçmiş görünümü için)
+  if(!D.metrics.history) D.metrics.history=[];
+  const dateVal=document.getElementById('metDate')?.value||new Date().toISOString().slice(0,10);
+  const entry={date:dateVal+'T12:00:00', values:{...cur}};
+  const sameDay=D.metrics.history.findIndex(e=>e.date.slice(0,10)===dateVal);
+  if(sameDay>=0) D.metrics.history[sameDay]=entry;
+  else D.metrics.history.unshift(entry);
+  D.metrics.history.sort((a,b)=>new Date(b.date)-new Date(a.date));
+
+  sv();
+  // Input temizle
+  MCFG.forEach(m=>{const inp=document.getElementById('mi'+m.k);if(inp)inp.value='';});
+  renderMetHist();
+  renderTel();
+  showToast('✓ Ölçüm kaydedildi');
 }
 
 // ── RESET ──

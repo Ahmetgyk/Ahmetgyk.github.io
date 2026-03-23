@@ -412,6 +412,34 @@ body.habit-mode .logo-name span{color:#4a9eff}
 .hlvl-track{height:5px;background:var(--stop);overflow:hidden;border-radius:2px}
 .hlvl-fill{height:100%;background:#4a9eff;transition:width .6s ease;border-radius:2px}
 
+
+/* CUSTOM TARGETS */
+.goal-list{display:flex;flex-direction:column;gap:10px}
+.goal-card{border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
+.goal-card::before{content:'';position:absolute;left:0;top:0;bottom:0;width:2px;background:#ff6b2b}
+.goal-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
+.goal-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
+.goal-unit{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.goal-lvl{background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.2);border-radius:5px;padding:5px 8px;text-align:right;min-width:58px}
+.goal-lvl strong{display:block;font-family:'JetBrains Mono',monospace;font-size:16px;color:#61a8de;line-height:1}
+.goal-lvl span{font-family:'Barlow Condensed',sans-serif;font-size:9px;color:var(--text-faint);letter-spacing:1px;text-transform:uppercase}
+.goal-progress{margin-top:10px}
+.goal-meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);margin-bottom:6px;gap:10px}
+.goal-track{height:5px;background:var(--stop);border-radius:2px;overflow:hidden}
+.goal-fill{height:100%;background:#ff6b2b;border-radius:2px;transition:width .5s ease}
+.goal-note{margin-top:8px;font-size:11px;color:var(--text-dim);line-height:1.45}
+.goal-empty{text-align:center;padding:26px 14px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;font-size:11px;letter-spacing:1px;text-transform:uppercase;line-height:1.9}
+.tcoef-list{display:flex;flex-direction:column;gap:8px;margin-top:6px}
+.tcoef-row{display:flex;align-items:center;gap:10px;background:var(--sdim);border:1px solid rgba(89,65,56,.14);border-radius:6px;padding:10px 12px}
+.tcoef-meta{flex:1;min-width:0}
+.tcoef-name{font-size:12px;color:var(--on);font-weight:500}
+.tcoef-sub{font-size:9px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.tcoef-input{width:86px;background:transparent;border:none;border-bottom:1px solid rgba(89,65,56,.3);color:var(--on);font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;padding:2px 4px;text-align:center;outline:none}
+.tcoef-input:focus{border-bottom-color:#61a8de}
+.tcoef-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:4px;background:rgba(97,168,222,.08);border:1px solid rgba(97,168,222,.22);color:#8fc2ef;font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.8px;margin:3px 4px 0 0}
+.target-preview{margin-top:10px;display:none}
+.target-preview.show{display:block}
+
 /* RESET CONFIRM */
 .hcm{position:fixed;inset:0;z-index:500;display:flex;align-items:center;justify-content:center;padding:20px;opacity:0;pointer-events:none;transition:opacity .25s;background:rgba(0,0,0,.8);backdrop-filter:blur(8px)}
 .hcm.show{opacity:1;pointer-events:all}
@@ -433,6 +461,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
   <div class="hdr-r" id="hdr-form">
     <button class="hbtn" onclick="openMetrics()" title="Ölçümler"><span class="material-symbols-outlined">straighten</span></button>
     <button class="hbtn" title="Hareket Yönetimi" onclick="openExMgr()" style="color:var(--primary)"><span class="material-symbols-outlined">fitness_center</span></button>
+    <button class="hbtn" onclick="openTargetMgr()" title="Hedef Yönetimi" style="color:#61a8de"><span class="material-symbols-outlined">track_changes</span></button>
     <button class="hbtn" onclick="exportBackup()" title="Yedek Al" style="color:var(--green)"><span class="material-symbols-outlined">download</span></button>
     <button class="hbtn" onclick="document.getElementById('backupInp').click()" title="Yedek Yükle" style="color:#61a8de"><span class="material-symbols-outlined">upload</span></button>
     <input type="file" id="backupInp" accept=".json" style="display:none" onchange="importBackup(this)">
@@ -476,6 +505,14 @@ body.habit-mode .logo-name span{color:#4a9eff}
       <div class="lvl-track"><div class="lvl-fill" id="lvlFill" style="width:0%"></div></div>
     </div>
   </div>
+</section>
+
+<section>
+  <div class="sh">
+    <span class="st">Hedef Gelişimi</span>
+    <button onclick="openTargetMgr()" style="background:transparent;border:none;color:#61a8de;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">DÜZENLE</button>
+  </div>
+  <div class="goal-list" id="goalList"></div>
 </section>
 
 <section>
@@ -606,6 +643,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
       <label class="fl">Antrenman Adı (isteğe bağlı)</label>
       <input type="text" class="fi2" id="snInp" placeholder="Örn: Push Protokol A">
     </div>
+    <div class="target-preview" id="wkTargetPreview"></div>
     <button class="sub" onclick="submitWk()">KAYDET</button>
   </div>
 </div>
@@ -642,7 +680,39 @@ body.habit-mode .logo-name span{color:#4a9eff}
         <div class="rleg"><div class="rleg-d" style="background:var(--stop)"></div>Yok</div>
       </div>
       <div class="mchkgrid" id="emMGrid"></div>
+      <div id="emTargetWrap" style="margin-top:14px">
+        <label class="fl">Hedef Katsayıları</label>
+        <div id="emTargetCoefs" class="tcoef-list"></div>
+        <div style="font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;line-height:1.6;margin-top:8px">0 bırakılırsa bu antrenman o hedefe puan yazmaz.</div>
+      </div>
       <button class="sub" onclick="saveEmEx()" id="emSaveBtn">KAYDET</button>
+    </div>
+  </div>
+</div>
+
+<!-- TARGET MANAGER SHEET -->
+<div class="ovl" id="tgOvl" onclick="closeTargetMgr()"></div>
+<div class="bs" id="tgSheet">
+  <div class="bsh"></div>
+  <div class="bst"><span class="bstl">Hedef Yönetimi</span><button class="bsc" onclick="closeTargetMgr()">✕</button></div>
+  <div class="bsb">
+    <div class="em-tabs">
+      <button class="em-tab active" id="tgT1" onclick="tgSwitchTab(1)">Liste / Düzenle</button>
+      <button class="em-tab" id="tgT2" onclick="tgSwitchTab(2)">Yeni Hedef</button>
+    </div>
+    <div id="tgC1">
+      <div id="tgList"></div>
+    </div>
+    <div id="tgC2" style="display:none">
+      <input type="hidden" id="tgEditId">
+      <div class="fg"><label class="fl">Hedef Adı</label><input type="text" class="fi2" id="tgName" placeholder="Örn: Koşu Mesafesi"></div>
+      <div style="display:flex;gap:8px">
+        <div class="fg" style="flex:1"><label class="fl">Birim</label><input type="text" class="fi2" id="tgUnit" placeholder="km"></div>
+        <div class="fg" style="flex:1"><label class="fl">Seviye 1 Hedefi</label><input type="number" class="fi2" id="tgBase" placeholder="100" min="1" step="1"></div>
+      </div>
+      <div class="fg"><label class="fl">Açıklama</label><input type="text" class="fi2" id="tgDesc" placeholder="Örn: Koşu kapasitesi ve dayanıklılık"></div>
+      <div style="font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;line-height:1.6;margin:-2px 0 14px">Her seviye sonrası hedef 2 katına çıkar. Skor, seviye atlayınca yeni seviyeye devreder.</div>
+      <button class="sub" onclick="saveTarget()" id="tgSaveBtn">KAYDET</button>
     </div>
   </div>
 </div>
@@ -727,6 +797,7 @@ const ld=()=>{
     if(!d.muscleLevel)d.muscleLevel={};
     if(!d.sessions)   d.sessions=[];
     if(!d.customEx)   d.customEx=[];
+    if(!d.customTargets) d.customTargets=[];
     if(!d.level)      d.level=1;
     if(!d.metrics)    d.metrics={history:[],cur:{},prev:{}};
     if(!d.metrics.history) d.metrics.history=[];
@@ -741,9 +812,10 @@ const ld=()=>{
   }catch(e){ return def(); }
 };
 const sv=()=>localStorage.setItem(SK,JSON.stringify(D));
-const def=()=>({scores:{},level:1,muscleLevel:{},metFields:[...DEFAULT_FIELDS],metrics:{cur:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0},prev:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0}},sessions:[],customEx:[]});
+const def=()=>({scores:{},level:1,muscleLevel:{},metFields:[...DEFAULT_FIELDS],metrics:{cur:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0},prev:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0}},sessions:[],customEx:[],customTargets:[]});
 let D=ld();
 if(!D.customEx)D.customEx=[];
+if(!D.customTargets)D.customTargets=[];
 
 // ── BUILT-IN EXERCISES ──
 const BUILT_EX=[
@@ -875,6 +947,94 @@ const MLIST=Object.entries(MN).map(([k,v])=>({k,v}));
 const allEx=()=>[...BUILT_EX,...(D.customEx||[])];
 const isCustom=id=>D.customEx?.some(c=>c.id===id);
 
+function ensureTargetDefaults(){
+  if(!D.customTargets) D.customTargets=[];
+  D.customTargets.forEach(function(t){
+    if(typeof t.level!=='number' || t.level<1) t.level=1;
+    if(typeof t.score!=='number' || t.score<0) t.score=0;
+    if(typeof t.baseTarget!=='number' || t.baseTarget<=0) t.baseTarget=100;
+    if(!t.unit) t.unit='puan';
+    if(!t.desc) t.desc='';
+  });
+}
+function getTargetGoal(t){
+  const base=Math.max(1, Number(t.baseTarget)||100);
+  const lvl=Math.max(1, Number(t.level)||1);
+  return Math.round(base*Math.pow(2,lvl-1));
+}
+function applyTargetGain(targetId,gain){
+  if(!gain) return;
+  ensureTargetDefaults();
+  const t=(D.customTargets||[]).find(function(x){ return x.id===targetId; });
+  if(!t) return;
+  t.score=Math.max(0,(Number(t.score)||0)+gain);
+  let loops=0;
+  while(t.score>=getTargetGoal(t) && loops<20){
+    t.score-=getTargetGoal(t);
+    t.level=(Number(t.level)||1)+1;
+    showToast('🎯 '+t.name+' seviye '+t.level+' oldu');
+    loops++;
+  }
+}
+function targetProgressPct(t){
+  const goal=getTargetGoal(t)||1;
+  return Math.max(0,Math.min(100,Math.round((Number(t.score)||0)/goal*100)));
+}
+function getExerciseTargetCoefs(ex){ return (ex&&ex.targets)||{}; }
+function calcExerciseTargetPreview(ex){
+  if(!ex) return [];
+  ensureTargetDefaults();
+  const res=[];
+  const coefs=getExerciseTargetCoefs(ex);
+  Object.keys(coefs).forEach(function(id){
+    const cf=Number(coefs[id])||0;
+    if(cf<=0) return;
+    let gain=0;
+    if(ex.type==='duration'){
+      const intMult={low:0.6,mid:1.0,high:1.5}[intensity]||1.0;
+      gain=Math.round(durMins*intMult*cf);
+    }else{
+      let volume=0, repsOnly=0;
+      for(let i=1;i<=nSets;i++){
+        const reps=parseInt(document.getElementById('r'+i)?.value)||0;
+        const kg=isBW?0:(parseFloat(document.getElementById('k'+i)?.value)||0);
+        repsOnly+=reps; volume+=reps*(kg||1);
+      }
+      gain=Math.round(isBW ? repsOnly*1.5*cf : volume*0.05*cf);
+    }
+    const tg=(D.customTargets||[]).find(function(t){ return t.id===id; });
+    if(tg) res.push({id:id,name:tg.name,gain:Math.max(0,gain),unit:tg.unit});
+  });
+  return res.filter(function(x){ return x.gain>0; });
+}
+function renderWorkoutTargetPreview(){
+  const box=document.getElementById('wkTargetPreview'); if(!box) return;
+  const items=calcExerciseTargetPreview(selEx);
+  if(!items.length){ box.classList.remove('show'); box.innerHTML=''; return; }
+  box.classList.add('show');
+  box.innerHTML='<label class="fl">Bu Antrenmanın Hedef Katkısı</label>'+items.map(function(it){
+    return '<span class="tcoef-chip">'+it.name+' +'+it.gain+'</span>';
+  }).join('');
+}
+function renderTargetCards(){
+  ensureTargetDefaults();
+  const el=document.getElementById('goalList'); if(!el) return;
+  if(!D.customTargets.length){
+    el.innerHTML='<div class="gc goal-empty">// özel hedef yok<br>koşu, esneklik, nabız, mobilite gibi hedefler ekle</div>';
+    return;
+  }
+  el.innerHTML=D.customTargets.map(function(t){
+    const goal=getTargetGoal(t), pct=targetProgressPct(t);
+    return '<div class="gc goal-card">'+
+      '<div class="goal-top">'+
+        '<div><div class="goal-name">'+t.name+'</div><div class="goal-unit">Skor '+(Number(t.score)||0)+' / '+goal+' · '+(t.unit||'puan')+'</div></div>'+
+        '<div class="goal-lvl"><strong>'+t.level+'</strong><span>Seviye</span></div>'+
+      '</div>'+
+      '<div class="goal-progress"><div class="goal-meta"><span>İlerleme</span><span>%'+pct+'</span></div><div class="goal-track"><div class="goal-fill" style="width:'+pct+'%"></div></div></div>'+
+      (t.desc?'<div class="goal-note">'+t.desc+'</div>':'')+
+    '</div>';
+  }).join('');
+}
 // ── LEVEL ──
 const MUSCLES=["pecs", "deltoid_front", "deltoid_side", "deltoid_rear", "biceps", "triceps", "wrist_extensor", "wrist_flexor", "abs_upper", "abs_lower", "obliques", "serratus", "adonis", "traps", "lats_upper", "lats_lower", "rhomboid", "lower_back", "adductor", "quads", "tibialis", "calves", "glutes", "hamstrings", "neck"];
 const LLBLS=['Başlangıç','Çaylak','Aktif','Deneyimli','İleri Seviye','Elit','Uzman','Usta','Şampiyon','Efsane'];
@@ -1087,7 +1247,7 @@ function openWk(){
   document.getElementById('durSection').style.display='none';
   document.getElementById('setsSection').style.display='';
   document.getElementById('bwRow').style.display='';
-  renderExList(allEx());renderSets();
+  renderExList(allEx());renderSets();renderWorkoutTargetPreview();
   document.getElementById('wkOvl').classList.add('show');document.getElementById('wkSheet').classList.add('show');
 }
 function closeWk(){document.getElementById('wkOvl').classList.remove('show');document.getElementById('wkSheet').classList.remove('show');}
@@ -1099,7 +1259,7 @@ function renderExList(list){
   document.getElementById('exList').innerHTML=list.map(e=>`
     <div class="eo${selEx?.id===e.id?' sel':''}" onclick="pickEx('${e.id}')">
       <div class="eon">${e.name}${isCustom(e.id)?'<span style="font-size:9px;color:var(--orange);font-family:JetBrains Mono,monospace;margin-left:6px">ÖZEL</span>':''}</div>
-      <div class="eoc">${e.p.map(m=>MN[m]||m).join(' · ')}${e.s.length?' <span style="opacity:.5">/ '+e.s.map(m=>MN[m]||m).join(' · ')+'</span>':''}${(e.coefP&&e.coefP!==1)?'<span style="color:var(--orange);margin-left:4px">×'+e.coefP+'</span>':''}</div>
+      <div class="eoc">${e.p.map(m=>MN[m]||m).join(' · ')}${e.s.length?' <span style="opacity:.5">/ '+e.s.map(m=>MN[m]||m).join(' · ')+'</span>':''}${(e.coefP&&e.coefP!==1)?'<span style="color:var(--orange);margin-left:4px">×'+e.coefP+'</span>':''}${Object.keys(getExerciseTargetCoefs(e)).length?'<span style="color:#61a8de;margin-left:4px">🎯 '+Object.keys(getExerciseTargetCoefs(e)).length+'</span>':''}</div>
     </div>`).join('');
 }
 function pickEx(id){
@@ -1108,23 +1268,26 @@ function pickEx(id){
   document.getElementById('mTW').style.display='';
   document.getElementById('mTE').innerHTML=selEx.p.map(m=>`<span class="mtag mtp">${MN[m]||m}</span>`).join('')+selEx.s.map(m=>`<span class="mtag mts">${MN[m]||m}</span>`).join('');
   renderSets();
+  renderWorkoutTargetPreview();
 }
-function toggleBW(){isBW=!isBW;document.getElementById('bwK').classList.toggle('on',isBW);renderSets();}
+function toggleBW(){isBW=!isBW;document.getElementById('bwK').classList.toggle('on',isBW);renderSets();renderWorkoutTargetPreview();}
 function renderSets(){
   const c=document.getElementById('setsList');c.innerHTML='';
   for(let i=1;i<=nSets;i++){
     const r=document.createElement('div');r.className='srow';
-    r.innerHTML=`<span class="sn">S${i}</span><input class="sf" type="number" inputmode="numeric" id="r${i}" placeholder="Tekrar" min="1">${!isBW?`<span class="ssep">×</span><input class="sf" type="number" inputmode="decimal" id="k${i}" placeholder="kg" min="0" step="0.5">`:''}${nSets>1?`<button class="sdel" onclick="remSet(${i})">−</button>`:''}`;
+    r.innerHTML=`<span class="sn">S${i}</span><input class="sf" type="number" inputmode="numeric" id="r${i}" placeholder="Tekrar" min="1" oninput="renderWorkoutTargetPreview()">${!isBW?`<span class="ssep">×</span><input class="sf" type="number" inputmode="decimal" id="k${i}" placeholder="kg" min="0" step="0.5" oninput="renderWorkoutTargetPreview()">`:''}${nSets>1?`<button class="sdel" onclick="remSet(${i})">−</button>`:''}`;
     c.appendChild(r);
   }
 }
-function addSet(){nSets++;renderSets();}
-function remSet(i){if(nSets<=1)return;nSets--;renderSets();}
+function addSet(){nSets++;renderSets();renderWorkoutTargetPreview();}
+function remSet(i){if(nSets<=1)return;nSets--;renderSets();renderWorkoutTargetPreview();}
 // ── DURATION HELPERS ──
 function adjDur(delta){
   durMins=Math.max(15,Math.min(300,durMins+delta));
   updateDurDisplay();
+  renderWorkoutTargetPreview();
 }
+
 function updateDurDisplay(){
   const h=Math.floor(durMins/60), m=durMins%60;
   document.getElementById('durDisplay').textContent=
@@ -1133,11 +1296,13 @@ function updateDurDisplay(){
 function setInt(v){
   intensity=v;
   ['low','mid','high'].forEach(x=>document.getElementById('int-'+x).classList.toggle('on',x===v));
+  renderWorkoutTargetPreview();
 }
 
 function submitWk(){
   if(!selEx){showToast('Önce hareket seç!');return;}
   const coefP=selEx.coefP||1.0, coefS=selEx.coefS||0.4;
+  const targetPreview=calcExerciseTargetPreview(selEx);
   let totalKg=0;
 
   if(selEx.type==='duration'){
@@ -1169,9 +1334,10 @@ function submitWk(){
 
   const intLabel={low:'Hafif',mid:'Orta',high:'Yüksek'}[intensity]||'';
   const durLabel=selEx.type==='duration'?` · ${durMins}dk ${intLabel}`:'';
+  targetPreview.forEach(function(tp){ applyTargetGain(tp.id,tp.gain); });
   const name=document.getElementById('snInp').value.trim()||selEx.name+durLabel;
   D.sessions.push({date:new Date().toISOString(),name,exercises:1,
-    totalKg:Math.round(totalKg),muscles:[...selEx.p,...selEx.s]});
+    totalKg:Math.round(totalKg),muscles:[...selEx.p,...selEx.s],targetGains:targetPreview});
   sv();closeWk();renderAll();showToast('✓ Kaydedildi');
 }
 
@@ -1215,12 +1381,34 @@ function initEmForm(ex=null){
   document.getElementById('emCS').value=ex?.coefS??0.4;
   document.getElementById('emBWK').classList.toggle('on',emBW);
   document.getElementById('emSaveBtn').textContent=ex&&isCustom(ex.id)?'GÜNCELLE':'KAYDET';
+  renderEmTargetCoefs(ex);
   const selP=new Set(ex?.p||[]),selS=new Set(ex?.s||[]);
   document.getElementById('emMGrid').innerHTML=MLIST.map(m=>`
     <div class="mchk${selP.has(m.k)?' cp':selS.has(m.k)?' cs':''}" id="mc${m.k}" onclick="cycleMuscle('${m.k}')">
       <div class="mchk-dot"></div><span class="mchk-l">${m.v}</span>
     </div>`).join('');
 }
+
+function renderEmTargetCoefs(ex){
+  ensureTargetDefaults();
+  const box=document.getElementById('emTargetCoefs');
+  const wrap=document.getElementById('emTargetWrap');
+  if(!box||!wrap) return;
+  if(!D.customTargets.length){
+    wrap.style.display='none';
+    box.innerHTML='';
+    return;
+  }
+  wrap.style.display='';
+  const tmap=(ex&&ex.targets)||{};
+  box.innerHTML=D.customTargets.map(function(t){
+    return '<div class="tcoef-row">'+
+      '<div class="tcoef-meta"><div class="tcoef-name">'+t.name+'</div><div class="tcoef-sub">Seviye 1 hedef: '+t.baseTarget+' '+(t.unit||'puan')+'</div></div>'+
+      '<input class="tcoef-input" type="number" step="0.1" min="0" placeholder="0" id="tgcoef_'+t.id+'" value="'+(tmap[t.id] ?? '')+'">'+
+    '</div>';
+  }).join('');
+}
+
 function cycleMuscle(k){
   const el=document.getElementById('mc'+k);
   if(el.classList.contains('cp')){el.classList.remove('cp');el.classList.add('cs');}
@@ -1241,8 +1429,13 @@ function saveEmEx(){
     else if(el.classList.contains('cs'))s.push(m.k);
   });
   if(!p.length){showToast('En az bir birincil kas seç!');return;}
+  const targets={};
+  (D.customTargets||[]).forEach(function(t){
+    const v=parseFloat(document.getElementById('tgcoef_'+t.id)?.value);
+    if(!isNaN(v) && v>0) targets[t.id]=v;
+  });
   const editId=document.getElementById('emEId').value;
-  const newEx={id:editId&&isCustom(editId)?editId:'cx_'+Date.now(),name,p,s,bw:emBW?1:0,coefP,coefS};
+  const newEx={id:editId&&isCustom(editId)?editId:'cx_'+Date.now(),name,p,s,bw:emBW?1:0,coefP,coefS,targets};
   const idx=D.customEx.findIndex(e=>e.id===newEx.id);
   if(idx>=0)D.customEx[idx]=newEx;else D.customEx.push(newEx);
   sv();emSwitchTab(1);renderEmList();showToast('✓ Hareket kaydedildi');
@@ -1251,11 +1444,75 @@ function emEdit(id){
   const ex=allEx().find(e=>e.id===id);if(!ex)return;
   emSwitchTab(2);
   if(isCustom(id))initEmForm(ex);
-  else initEmForm({...ex,id:'',name:ex.name+' (kopya)',coefP:1.0,coefS:0.4});
+  else initEmForm({...ex,id:'',name:ex.name+' (kopya)',coefP:1.0,coefS:0.4,targets:{}});
 }
 function emDel(id){
   D.customEx=D.customEx.filter(e=>e.id!==id);
   sv();renderEmList();showToast('Hareket silindi');
+}
+
+// ── TARGET MANAGER ──
+let tgTab=1;
+function openTargetMgr(){ tgTab=1; tgSwitchTab(1); renderTargetMgrList(); document.getElementById('tgOvl').classList.add('show'); document.getElementById('tgSheet').classList.add('show'); }
+function closeTargetMgr(){ document.getElementById('tgOvl').classList.remove('show'); document.getElementById('tgSheet').classList.remove('show'); }
+function tgSwitchTab(t){
+  tgTab=t;
+  document.getElementById('tgT1').classList.toggle('active',t===1);
+  document.getElementById('tgT2').classList.toggle('active',t===2);
+  document.getElementById('tgC1').style.display=t===1?'':'none';
+  document.getElementById('tgC2').style.display=t===2?'':'none';
+  if(t===2) initTargetForm();
+}
+function renderTargetMgrList(){
+  ensureTargetDefaults();
+  const el=document.getElementById('tgList'); if(!el) return;
+  if(!D.customTargets.length){ el.innerHTML='<div class="goal-empty">// hedef yok<br>yeni hedef sekmesinden ekle</div>'; return; }
+  el.innerHTML=D.customTargets.map(function(t){
+    const goal=getTargetGoal(t), pct=targetProgressPct(t);
+    return '<div class="mh-entry" style="padding:12px 14px">'+
+      '<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">'+
+        '<div><div style="font-size:14px;color:var(--on);font-weight:600">'+t.name+'</div><div style="font-size:10px;color:var(--text-faint);font-family:JetBrains Mono,monospace">L'+t.level+' · '+(t.score||0)+' / '+goal+' · '+(t.unit||'puan')+'</div></div>'+
+        '<div style="display:flex;gap:6px"><button class="mh-del" style="background:rgba(97,222,138,.12);color:var(--green)" onclick="editTarget(\''+t.id+'\')">✏ Düzenle</button><button class="mh-del" onclick="deleteTarget(\''+t.id+'\')">× Sil</button></div>'+
+      '</div>'+
+      '<div class="goal-progress" style="margin-top:10px"><div class="goal-track"><div class="goal-fill" style="width:'+pct+'%"></div></div></div>'+
+      (t.desc?'<div class="goal-note">'+t.desc+'</div>':'')+
+    '</div>';
+  }).join('');
+}
+function initTargetForm(t){
+  document.getElementById('tgEditId').value=t?.id||'';
+  document.getElementById('tgName').value=t?.name||'';
+  document.getElementById('tgUnit').value=t?.unit||'';
+  document.getElementById('tgBase').value=t?.baseTarget||100;
+  document.getElementById('tgDesc').value=t?.desc||'';
+  document.getElementById('tgSaveBtn').textContent=t?'GÜNCELLE':'KAYDET';
+}
+function saveTarget(){
+  ensureTargetDefaults();
+  const id=document.getElementById('tgEditId').value;
+  const name=document.getElementById('tgName').value.trim();
+  const unit=document.getElementById('tgUnit').value.trim()||'puan';
+  const baseTarget=Math.max(1, parseFloat(document.getElementById('tgBase').value)||0);
+  const desc=document.getElementById('tgDesc').value.trim();
+  if(!name){ showToast('Hedef adı gir!'); return; }
+  if(!baseTarget){ showToast('Seviye hedefi gir!'); return; }
+  if(id){
+    const t=D.customTargets.find(function(x){ return x.id===id; });
+    if(!t) return;
+    t.name=name; t.unit=unit; t.baseTarget=baseTarget; t.desc=desc;
+  } else {
+    D.customTargets.push({id:'tg_'+Date.now(),name:name,unit:unit,baseTarget:baseTarget,desc:desc,level:1,score:0});
+  }
+  sv(); renderTargetCards(); renderTargetMgrList(); renderEmList(); tgSwitchTab(1); showToast('✓ Hedef kaydedildi');
+}
+function editTarget(id){ const t=(D.customTargets||[]).find(function(x){ return x.id===id; }); if(!t) return; tgSwitchTab(2); initTargetForm(t); }
+function deleteTarget(id){
+  const t=(D.customTargets||[]).find(function(x){ return x.id===id; });
+  if(!t) return;
+  if(!confirm('"'+t.name+'" hedefini sil?')) return;
+  D.customTargets=D.customTargets.filter(function(x){ return x.id!==id; });
+  D.customEx=(D.customEx||[]).map(function(ex){ if(ex.targets&&ex.targets[id]!=null) delete ex.targets[id]; return ex; });
+  sv(); renderTargetCards(); renderTargetMgrList(); showToast('Hedef silindi');
 }
 
 // ── METRICS ──
@@ -1504,6 +1761,7 @@ let tt;function showToast(msg){const t=document.getElementById('toast');t.textCo
 function renderAll(){
   try{ renderMap();      }catch(e){ console.warn('renderMap:',e); }
   try{ renderLevel();    }catch(e){ console.warn('renderLevel:',e); }
+  try{ renderTargetCards(); }catch(e){ console.warn('renderTargetCards:',e); }
   try{ renderStreak();   }catch(e){ console.warn('renderStreak:',e); }
   try{ renderTel();      }catch(e){ console.warn('renderTel:',e); }
   try{ renderSessions(); }catch(e){ console.warn('renderSessions:',e); }
@@ -1565,6 +1823,7 @@ function importBackup(inp){
         metrics:     restored.metrics     || {cur:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0},prev:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0}},
         sessions:    restored.sessions    || [],
         customEx:    restored.customEx    || [],
+        customTargets: restored.customTargets || [],
       };
       sv();
       renderAll();

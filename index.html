@@ -111,6 +111,47 @@ main{padding:76px 16px 100px;display:flex;flex-direction:column;gap:24px}
 .lmb{width:100%;height:6px;border-radius:1px}
 .lmd2{font-family:'JetBrains Mono',monospace;font-size:8px;color:var(--text-faint);margin-top:6px;text-transform:uppercase}
 
+
+/* NUTRITION */
+.nut-card{border-radius:12px;padding:16px;position:relative;overflow:hidden}
+.nut-card::before{content:'';position:absolute;inset:0;pointer-events:none}
+.nut-head{display:flex;align-items:center;justify-content:space-between;gap:12px;margin-bottom:14px;position:relative;z-index:1}
+.nut-title{font-family:'Barlow Condensed',sans-serif;font-size:20px;font-weight:700;letter-spacing:.8px;text-transform:uppercase}
+.nut-sub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
+.nut-actions{display:flex;gap:8px;flex-wrap:wrap}
+.nut-btn{padding:8px 12px;border-radius:6px;border:1px solid rgba(255,107,43,.2);background:rgba(255,107,43,.08);color:#ffb59a;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;cursor:pointer;transition:filter .15s,transform .15s}
+.nut-btn:active{transform:scale(.97)}
+.nut-list{display:flex;flex-direction:column;gap:12px;position:relative;z-index:1}
+.nut-row{display:flex;flex-direction:column;gap:6px}
+.nut-meta{display:flex;align-items:flex-end;justify-content:space-between;gap:10px}
+.nut-name{font-size:14px;font-weight:600;color:var(--on)}
+.nut-range{font-family:'JetBrains Mono',monospace;font-size:12px;color:var(--text-dim);white-space:nowrap}
+.nut-track{height:8px;background:rgba(255,255,255,.06);border-radius:999px;overflow:hidden;position:relative;border:1px solid rgba(255,255,255,.03)}
+.nut-fill{height:100%;border-radius:999px;transition:width .35s ease,background .35s ease;position:relative;z-index:1}
+.nut-fill.over{filter:saturate(1.1) brightness(1.05)}
+.nut-overcap{position:absolute;right:0;top:0;bottom:0;background:rgba(255,90,90,.22);border-left:1px solid rgba(255,120,120,.55);z-index:2}
+.nut-note{display:flex;justify-content:space-between;gap:8px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.6px}
+.nut-note strong{color:var(--on)}
+.nut-today{margin-top:14px;padding-top:14px;border-top:1px solid rgba(89,65,56,.18);display:flex;flex-direction:column;gap:8px;position:relative;z-index:1}
+.nut-summary{display:grid;grid-template-columns:repeat(2,1fr);gap:8px}
+.nut-sum{background:var(--sdim);border-radius:8px;padding:10px 12px;border:1px solid rgba(89,65,56,.12)}
+.nut-sum-l{font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
+.nut-sum-v{font-family:'JetBrains Mono',monospace;font-size:16px;font-weight:700;color:#ffb59a}
+.nut-loglist{display:flex;flex-direction:column;gap:6px;max-height:220px;overflow-y:auto;scrollbar-width:none}
+.nut-loglist::-webkit-scrollbar{display:none}
+.nut-logitem{display:flex;align-items:center;gap:10px;background:var(--sdim);border-radius:8px;padding:10px 12px;border:1px solid rgba(89,65,56,.12)}
+.nut-logmeta{flex:1;min-width:0}
+.nut-logname{font-size:13px;color:var(--on);white-space:nowrap;overflow:hidden;text-overflow:ellipsis}
+.nut-logsub{font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);text-transform:uppercase;letter-spacing:.6px;margin-top:2px}
+.nut-logkcal{font-family:'JetBrains Mono',monospace;font-size:13px;font-weight:700;color:#ffb59a;white-space:nowrap}
+.nut-logdel{width:28px;height:28px;border:none;border-radius:5px;background:rgba(255,90,90,.1);color:#ff8c8c;cursor:pointer;display:flex;align-items:center;justify-content:center}
+.nut-inline-grid{display:grid;grid-template-columns:1fr 1fr;gap:8px}
+.nut-chip-row{display:flex;gap:6px;flex-wrap:wrap}
+.nut-chip{padding:6px 10px;border-radius:5px;background:var(--sdim);border:1px solid rgba(89,65,56,.16);color:var(--text-dim);font-family:'JetBrains Mono',monospace;font-size:10px;text-transform:uppercase;letter-spacing:.8px;cursor:pointer}
+.nut-chip.on{background:rgba(255,107,43,.12);border-color:rgba(255,107,43,.3);color:#ffb59a}
+.nut-empty{padding:18px 12px;text-align:center;color:var(--text-faint);font-family:'JetBrains Mono',monospace;font-size:11px;text-transform:uppercase;letter-spacing:.8px;line-height:1.8}
+@media (max-width:380px){.nut-summary,.nut-inline-grid{grid-template-columns:1fr}}
+
 /* FAB */
 .fab{position:fixed;bottom:28px;right:max(24px,calc(50vw - 191px));width:56px;height:56px;background:var(--orange);border:none;border-radius:8px;display:flex;align-items:center;justify-content:center;cursor:pointer;box-shadow:0 8px 28px rgba(255,107,43,.42);z-index:100;transition:transform .15s,box-shadow .15s}
 .fab:active{transform:scale(.9)}
@@ -436,7 +477,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
 .tcoef-sub{font-size:9px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 .tcoef-input{width:86px;background:transparent;border:none;border-bottom:1px solid rgba(89,65,56,.3);color:var(--on);font-family:'JetBrains Mono',monospace;font-size:18px;font-weight:600;padding:2px 4px;text-align:center;outline:none}
 .tcoef-input:focus{border-bottom-color:#61a8de}
-.tcoef-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:4px;background:rgba(97,168,222,.08);border:1px solid rgba(97,168,222,.22);color:#8fc2ef;font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.8px;margin:3px 4px 0 0}
+.tcoef-chip{display:inline-flex;align-items:center;gap:5px;padding:4px 8px;border-radius:4px;background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.22);color:#ffb59a;font-family:'JetBrains Mono',monospace;font-size:9px;text-transform:uppercase;letter-spacing:.8px;margin:3px 4px 0 0}
 .target-preview{margin-top:10px;display:none}
 .target-preview.show{display:block}
 
@@ -461,7 +502,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
   <div class="hdr-r" id="hdr-form">
     <button class="hbtn" onclick="openMetrics()" title="Ölçümler"><span class="material-symbols-outlined">straighten</span></button>
     <button class="hbtn" title="Hareket Yönetimi" onclick="openExMgr()" style="color:var(--primary)"><span class="material-symbols-outlined">fitness_center</span></button>
-    <button class="hbtn" onclick="openTargetMgr()" title="Hedef Yönetimi" style="color:#61a8de"><span class="material-symbols-outlined">track_changes</span></button>
+    <button class="hbtn" onclick="openTargetMgr()" title="Hedef Yönetimi" style="color:#ff6b2b"><span class="material-symbols-outlined">track_changes</span></button>
     <button class="hbtn" onclick="exportBackup()" title="Yedek Al" style="color:var(--green)"><span class="material-symbols-outlined">download</span></button>
     <button class="hbtn" onclick="document.getElementById('backupInp').click()" title="Yedek Yükle" style="color:#61a8de"><span class="material-symbols-outlined">upload</span></button>
     <input type="file" id="backupInp" accept=".json" style="display:none" onchange="importBackup(this)">
@@ -505,14 +546,6 @@ body.habit-mode .logo-name span{color:#4a9eff}
       <div class="lvl-track"><div class="lvl-fill" id="lvlFill" style="width:0%"></div></div>
     </div>
   </div>
-</section>
-
-<section>
-  <div class="sh">
-    <span class="st">Hedef Gelişimi</span>
-    <button onclick="openTargetMgr()" style="background:transparent;border:none;color:#61a8de;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">DÜZENLE</button>
-  </div>
-  <div class="goal-list" id="goalList"></div>
 </section>
 
 <section>
@@ -571,6 +604,43 @@ body.habit-mode .logo-name span{color:#4a9eff}
       <div class="ml2"><div class="mld" style="background:#152A38"></div><span class="mlt">Yok</span></div>
       <div class="ml2"><div class="mld" style="background:#D1D4C9"></div><span class="mlt">Gelişiyor</span></div>
       <div class="ml2"><div class="mld" style="background:#556E53"></div><span class="mlt">Gelişmiş</span></div>
+    </div>
+  </div>
+</section>
+
+<section>
+  <div class="sh">
+    <span class="st">Hedef Gelişimi</span>
+    <button onclick="openTargetMgr()" style="background:transparent;border:none;color:#ff6b2b;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">DÜZENLE</button>
+  </div>
+  <div class="goal-list" id="goalList"></div>
+</section>
+
+<section>
+  <div class="sh">
+    <span class="st">Besin Takibi</span>
+    <div style="display:flex;gap:8px;align-items:center">
+      <button onclick="openNutritionTargets()" style="background:transparent;border:none;color:#ffb59a;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">HEDEFLER</button>
+      <button onclick="openNutritionLog()" style="background:transparent;border:none;color:var(--orange);font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">EKLE</button>
+    </div>
+  </div>
+  <div class="gc nut-card">
+    <div class="nut-head">
+      <div>
+        <div class="nut-title">Makro Hedeflerim</div>
+        <div class="nut-sub" id="nutDateLabel">Bugün</div>
+      </div>
+      <div class="nut-actions">
+        <button class="nut-btn" onclick="openNutritionLog()">Tüketim Ekle</button>
+      </div>
+    </div>
+    <div class="nut-list" id="nutritionBars"></div>
+    <div class="nut-today">
+      <div class="nut-summary">
+        <div class="nut-sum"><div class="nut-sum-l">Bugünkü Toplam</div><div class="nut-sum-v" id="nutTotalKcal">0 kcal</div></div>
+        <div class="nut-sum"><div class="nut-sum-l">Su</div><div class="nut-sum-v" id="nutWaterTotal">0 ml</div></div>
+      </div>
+      <div id="nutritionTodayList" class="nut-loglist"></div>
     </div>
   </div>
 </section>
@@ -785,6 +855,79 @@ function getMCFG(){ return (D&&D.metFields&&D.metFields.length>0)?D.metFields:DE
 var MCFG=DEFAULT_FIELDS.slice();
 
 
+const DEFAULT_FOODS=[
+  {id:'apple',name:'Elma',mode:'adet',baseAmount:1,calories:52,protein:0.3,carbs:14,fat:0.2},
+  {id:'pear',name:'Armut',mode:'adet',baseAmount:1,calories:57,protein:0.4,carbs:15,fat:0.1},
+  {id:'banana',name:'Muz',mode:'adet',baseAmount:1,calories:89,protein:1.1,carbs:23,fat:0.3},
+  {id:'tomato',name:'Domates',mode:'g',baseAmount:100,calories:18,protein:0.9,carbs:3.9,fat:0.2},
+  {id:'cucumber',name:'Salatalık',mode:'g',baseAmount:100,calories:15,protein:0.7,carbs:3.6,fat:0.1},
+  {id:'rice',name:'Pilav',mode:'g',baseAmount:100,calories:130,protein:2.7,carbs:28,fat:0.3},
+  {id:'chicken',name:'Tavuk Göğsü',mode:'g',baseAmount:100,calories:165,protein:31,carbs:0,fat:3.6},
+  {id:'egg',name:'Yumurta',mode:'adet',baseAmount:1,calories:78,protein:6.3,carbs:0.6,fat:5.3},
+  {id:'oats',name:'Yulaf',mode:'g',baseAmount:100,calories:389,protein:16.9,carbs:66.3,fat:6.9},
+  {id:'bread',name:'Ekmek',mode:'adet',baseAmount:1,calories:75,protein:2.6,carbs:14,fat:1},
+  {id:'yogurt',name:'Yoğurt',mode:'g',baseAmount:100,calories:61,protein:3.5,carbs:4.7,fat:3.3},
+  {id:'potato',name:'Patates',mode:'g',baseAmount:100,calories:77,protein:2,carbs:17,fat:0.1}
+];
+function defaultNutrition(){
+  return {
+    targets:{calories:2036,protein:163,carbs:238,fat:48,water:2500},
+    foods:DEFAULT_FOODS.map(function(f){ return {...f}; }),
+    logs:{}
+  };
+}
+function normalizeNutrition(n){
+  if(!n.targets) n.targets={calories:2036,protein:163,carbs:238,fat:48,water:2500};
+  n.targets={calories:Number(n.targets.calories)||2036,protein:Number(n.targets.protein)||163,carbs:Number(n.targets.carbs)||238,fat:Number(n.targets.fat)||48,water:Number(n.targets.water)||2500};
+  if(!Array.isArray(n.foods) || !n.foods.length) n.foods=DEFAULT_FOODS.map(function(f){ return {...f}; });
+  n.foods=n.foods.map(function(f,ix){ return {id:f.id||('food_'+ix),name:f.name||'Besin',mode:f.mode==='adet'?'adet':'g',baseAmount:Number(f.baseAmount)||((f.mode==='adet')?1:100),calories:Number(f.calories)||0,protein:Number(f.protein)||0,carbs:Number(f.carbs)||0,fat:Number(f.fat)||0}; });
+  if(!n.logs || typeof n.logs!=='object') n.logs={};
+  Object.keys(n.logs).forEach(function(k){
+    const day=n.logs[k]||{};
+    if(!Array.isArray(day.items)) day.items=[];
+    day.items=day.items.map(function(it){ return {id:it.id||('entry_'+Date.now()),foodId:it.foodId,qty:Number(it.qty)||0,unit:it.unit||'g'}; }).filter(function(it){ return it.foodId && it.qty>0; });
+    day.water=Number(day.water)||0;
+    n.logs[k]=day;
+  });
+}
+function todayKey(){
+  const d=new Date();
+  const y=d.getFullYear(), m=String(d.getMonth()+1).padStart(2,'0'), day=String(d.getDate()).padStart(2,'0');
+  return y+'-'+m+'-'+day;
+}
+function getTodayNutritionLog(){
+  const key=todayKey();
+  if(!D.nutrition.logs[key]) D.nutrition.logs[key]={items:[],water:0};
+  return D.nutrition.logs[key];
+}
+function getFoodById(id){ return (D.nutrition.foods||[]).find(function(f){ return f.id===id; }); }
+function calcNutritionTotals(key){
+  key=key||todayKey();
+  const log=(D.nutrition.logs&&D.nutrition.logs[key])||{items:[],water:0};
+  const totals={calories:0,protein:0,carbs:0,fat:0,water:Number(log.water)||0,items:[]};
+  (log.items||[]).forEach(function(entry){
+    const food=getFoodById(entry.foodId); if(!food) return;
+    const factor=(Number(entry.qty)||0)/(Number(food.baseAmount)||1);
+    const row={id:entry.id,foodId:food.id,name:food.name,qty:Number(entry.qty)||0,unit:entry.unit||food.mode,calories:food.calories*factor,protein:food.protein*factor,carbs:food.carbs*factor,fat:food.fat*factor};
+    totals.calories+=row.calories; totals.protein+=row.protein; totals.carbs+=row.carbs; totals.fat+=row.fat; totals.items.push(row);
+  });
+  return totals;
+}
+function fmtNum(v,dec){ return (Number(v)||0).toLocaleString('tr-TR',{minimumFractionDigits:dec,maximumFractionDigits:dec}); }
+function nutritionBarRow(label,key,unit,color,total,target){
+  const ratio=target>0 ? total/target : 0;
+  const pct=Math.min(100,Math.round(ratio*100));
+  const isOver=ratio>1;
+  const overPct=isOver?Math.min(100,Math.round((ratio-1)*100)):0;
+  return '<div class="nut-row">'+
+    '<div class="nut-meta"><div class="nut-name">'+label+'</div><div class="nut-range">'+fmtNum(total,key==='calories'||key==='water'?0:1)+' / '+fmtNum(target,key==='calories'||key==='water'?0:1)+' '+unit+'</div></div>'+
+    '<div class="nut-track"><div class="nut-fill'+(isOver?' over':'')+'" style="width:'+pct+'%;background:'+color+'"></div>'+(isOver?'<div class="nut-overcap" style="width:'+overPct+'%"></div>':'')+'</div>'+
+    '<div class="nut-note"><span>'+(isOver?'<strong>Hedef aşıldı</strong>':'Kalan')+'</span><span>'+(isOver?('+'+fmtNum(total-target,key==='calories'||key==='water'?0:1)+' '+unit):fmtNum(Math.max(0,target-total),key==='calories'||key==='water'?0:1)+' '+unit)+'</span></div>'+
+  '</div>';
+}
+let selectedFoodId=null; let foodFormMode='g';
+
+
 // ── DATA ──
 const SK='form_ahmet_v6';
 const ld=()=>{
@@ -798,6 +941,8 @@ const ld=()=>{
     if(!d.sessions)   d.sessions=[];
     if(!d.customEx)   d.customEx=[];
     if(!d.customTargets) d.customTargets=[];
+    if(!d.nutrition) d.nutrition=defaultNutrition();
+    normalizeNutrition(d.nutrition);
     if(!d.level)      d.level=1;
     if(!d.metrics)    d.metrics={history:[],cur:{},prev:{}};
     if(!d.metrics.history) d.metrics.history=[];
@@ -812,7 +957,7 @@ const ld=()=>{
   }catch(e){ return def(); }
 };
 const sv=()=>localStorage.setItem(SK,JSON.stringify(D));
-const def=()=>({scores:{},level:1,muscleLevel:{},metFields:[...DEFAULT_FIELDS],metrics:{cur:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0},prev:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0}},sessions:[],customEx:[],customTargets:[]});
+const def=()=>({scores:{},level:1,muscleLevel:{},metFields:[...DEFAULT_FIELDS],metrics:{cur:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0},prev:{boy:0,kilo:0,gogus:0,bel:0,kalca:0,bicep:0,but:0,baldir:0}},sessions:[],customEx:[],customTargets:[],nutrition:defaultNutrition()});
 let D=ld();
 if(!D.customEx)D.customEx=[];
 if(!D.customTargets)D.customTargets=[];
@@ -1758,10 +1903,181 @@ function doReset(){localStorage.removeItem(SK);D=def();closeReset();renderAll();
 // ── TOAST ──
 let tt;function showToast(msg){const t=document.getElementById('toast');t.textContent=msg;t.classList.add('show');clearTimeout(tt);tt=setTimeout(()=>t.classList.remove('show'),2600);}
 
+
+function renderNutrition(){
+  if(!D.nutrition){ D.nutrition=defaultNutrition(); }
+  normalizeNutrition(D.nutrition);
+  const totals=calcNutritionTotals();
+  const t=D.nutrition.targets;
+  const dateEl=document.getElementById('nutDateLabel');
+  if(dateEl){
+    const d=new Date();
+    dateEl.textContent=d.toLocaleDateString('tr-TR',{day:'2-digit',month:'long',weekday:'long'});
+  }
+  const bars=document.getElementById('nutritionBars');
+  if(bars){
+    bars.innerHTML=[
+      nutritionBarRow('Kalori','calories','kcal','#ff9c35',totals.calories,t.calories),
+      nutritionBarRow('Protein','protein','g','#ff6161',totals.protein,t.protein),
+      nutritionBarRow('Karbonhidrat','carbs','g','#f1dd43',totals.carbs,t.carbs),
+      nutritionBarRow('Yağ','fat','g','#45a2ff',totals.fat,t.fat),
+      nutritionBarRow('Su','water','ml','#ff9a6b',totals.water,t.water)
+    ].join('');
+  }
+  const kcalEl=document.getElementById('nutTotalKcal'); if(kcalEl) kcalEl.textContent=fmtNum(totals.calories,0)+' kcal';
+  const waterEl=document.getElementById('nutWaterTotal'); if(waterEl) waterEl.textContent=fmtNum(totals.water,0)+' ml';
+  const list=document.getElementById('nutritionTodayList');
+  if(list){
+    if(!totals.items.length){
+      list.innerHTML='<div class="nut-empty">bugün henüz besin eklenmedi</div>';
+    }else{
+      list.innerHTML=totals.items.slice().reverse().map(function(it){
+        return `<div class="nut-logitem"><div class="nut-logmeta"><div class="nut-logname">${it.name}</div><div class="nut-logsub">${fmtNum(it.qty,it.unit==='adet'?1:0)} ${it.unit} · P ${fmtNum(it.protein,1)} · K ${fmtNum(it.carbs,1)} · Y ${fmtNum(it.fat,1)}</div></div><div class="nut-logkcal">${fmtNum(it.calories,0)} kcal</div><button class="nut-logdel" onclick="deleteNutritionEntry('${it.id}')"><span class="material-symbols-outlined" style="font-size:18px">delete</span></button></div>`;
+      }).join('');
+    }
+  }
+}
+function openNutritionTargets(){
+  normalizeNutrition(D.nutrition);
+  const t=D.nutrition.targets;
+  document.getElementById('nutTargetCalories').value=t.calories;
+  document.getElementById('nutTargetProtein').value=t.protein;
+  document.getElementById('nutTargetCarbs').value=t.carbs;
+  document.getElementById('nutTargetFat').value=t.fat;
+  document.getElementById('nutTargetWater').value=t.water;
+  document.getElementById('nutTargetOvl').classList.add('show');
+  document.getElementById('nutTargetSheet').classList.add('show');
+}
+function closeNutritionTargets(){ document.getElementById('nutTargetOvl').classList.remove('show'); document.getElementById('nutTargetSheet').classList.remove('show'); }
+function saveNutritionTargets(){
+  D.nutrition.targets={
+    calories:Math.max(0,Number(document.getElementById('nutTargetCalories').value)||0),
+    protein:Math.max(0,Number(document.getElementById('nutTargetProtein').value)||0),
+    carbs:Math.max(0,Number(document.getElementById('nutTargetCarbs').value)||0),
+    fat:Math.max(0,Number(document.getElementById('nutTargetFat').value)||0),
+    water:Math.max(0,Number(document.getElementById('nutTargetWater').value)||0)
+  };
+  sv(); closeNutritionTargets(); renderNutrition(); showToast('Besin hedefleri kaydedildi');
+}
+function renderFoodPicker(){
+  const wrap=document.getElementById('nutritionFoodList'); if(!wrap) return;
+  const q=(document.getElementById('nutFoodSearch').value||'').trim().toLocaleLowerCase('tr-TR');
+  const foods=(D.nutrition.foods||[]).slice().sort(function(a,b){ return a.name.localeCompare(b.name,'tr'); }).filter(function(f){ return !q || f.name.toLocaleLowerCase('tr-TR').includes(q); });
+  if(!foods.length){ wrap.innerHTML='<div class="nut-empty">eşleşen besin bulunamadı</div>'; return; }
+  wrap.innerHTML=foods.map(function(f){
+    return `<div class="eo${selectedFoodId===f.id?' sel':''}" onclick="selectFood('${f.id}')"><div class="eon">${f.name}</div><div class="eoc">${fmtNum(f.baseAmount,f.mode==='adet'?1:0)} ${f.mode} · ${fmtNum(f.calories,0)} kcal · p ${fmtNum(f.protein,1)} · k ${fmtNum(f.carbs,1)} · y ${fmtNum(f.fat,1)}</div></div>`;
+  }).join('');
+}
+function selectFood(id){
+  selectedFoodId=id;
+  const food=getFoodById(id); if(!food) return;
+  document.getElementById('nutQtyUnit').value=food.mode;
+  document.getElementById('nutQty').value=food.baseAmount;
+  renderFoodPicker();
+}
+function openNutritionLog(){
+  normalizeNutrition(D.nutrition);
+  selectedFoodId=null;
+  document.getElementById('nutFoodSearch').value='';
+  document.getElementById('nutQty').value='';
+  document.getElementById('nutQtyUnit').value='';
+  renderFoodPicker();
+  document.getElementById('nutLogOvl').classList.add('show');
+  document.getElementById('nutLogSheet').classList.add('show');
+}
+function closeNutritionLog(){ document.getElementById('nutLogOvl').classList.remove('show'); document.getElementById('nutLogSheet').classList.remove('show'); }
+function saveNutritionEntry(){
+  if(!selectedFoodId){ showToast('Bir besin seç'); return; }
+  const qty=Math.max(0,Number(document.getElementById('nutQty').value)||0);
+  if(!qty){ showToast('Miktar gir'); return; }
+  const food=getFoodById(selectedFoodId); if(!food){ showToast('Besin bulunamadı'); return; }
+  const day=getTodayNutritionLog();
+  day.items.push({id:'entry_'+Date.now(),foodId:food.id,qty:qty,unit:food.mode});
+  sv(); closeNutritionLog(); renderNutrition(); showToast('Besin bugüne eklendi');
+}
+function deleteNutritionEntry(id){
+  const day=getTodayNutritionLog();
+  day.items=(day.items||[]).filter(function(it){ return it.id!==id; });
+  sv(); renderNutrition(); showToast('Kayıt silindi');
+}
+function quickAddWater(amount){
+  const day=getTodayNutritionLog(); day.water=(Number(day.water)||0)+Number(amount||0); sv(); renderNutrition(); showToast(amount+' ml su eklendi');
+}
+function setFoodMode(mode){
+  foodFormMode=mode==='adet'?'adet':'g';
+  document.getElementById('foodModeGram').classList.toggle('on',foodFormMode==='g');
+  document.getElementById('foodModePiece').classList.toggle('on',foodFormMode==='adet');
+  document.getElementById('foodBaseUnit').value=foodFormMode;
+  const inp=document.getElementById('foodBaseAmount');
+  if(!inp.value) inp.value=foodFormMode==='adet' ? '1' : '100';
+}
+function openFoodManager(){
+  renderFoodManagerList();
+  resetFoodForm();
+  document.getElementById('foodMgrOvl').classList.add('show');
+  document.getElementById('foodMgrSheet').classList.add('show');
+}
+function closeFoodManager(){ document.getElementById('foodMgrOvl').classList.remove('show'); document.getElementById('foodMgrSheet').classList.remove('show'); }
+function resetFoodForm(){
+  document.getElementById('foodEditId').value='';
+  document.getElementById('foodName').value='';
+  document.getElementById('foodBaseAmount').value='100';
+  document.getElementById('foodCalories').value='';
+  document.getElementById('foodProtein').value='';
+  document.getElementById('foodCarbs').value='';
+  document.getElementById('foodFat').value='';
+  setFoodMode('g');
+}
+function renderFoodManagerList(){
+  const box=document.getElementById('foodManagerList'); if(!box) return;
+  const foods=(D.nutrition.foods||[]).slice().sort(function(a,b){ return a.name.localeCompare(b.name,'tr'); });
+  if(!foods.length){ box.innerHTML='<div class="nut-empty">kayıtlı besin yok</div>'; return; }
+  box.innerHTML=foods.map(function(f){
+    return `<div class="nut-logitem"><div class="nut-logmeta"><div class="nut-logname">${f.name}</div><div class="nut-logsub">${fmtNum(f.baseAmount,f.mode==='adet'?1:0)} ${f.mode} · ${fmtNum(f.calories,0)} kcal · p ${fmtNum(f.protein,1)} · k ${fmtNum(f.carbs,1)} · y ${fmtNum(f.fat,1)}</div></div><button class="nut-logdel" style="background:rgba(255,107,43,.12);color:#ffb59a" onclick="editFoodItem('${f.id}')"><span class="material-symbols-outlined" style="font-size:18px">edit</span></button><button class="nut-logdel" onclick="deleteFoodItem('${f.id}')"><span class="material-symbols-outlined" style="font-size:18px">delete</span></button></div>`;
+  }).join('');
+}
+function saveFoodItem(){
+  const id=document.getElementById('foodEditId').value || ('food_'+Date.now());
+  const item={
+    id:id,
+    name:document.getElementById('foodName').value.trim(),
+    mode:foodFormMode,
+    baseAmount:Math.max(0.1,Number(document.getElementById('foodBaseAmount').value)|| (foodFormMode==='adet'?1:100)),
+    calories:Math.max(0,Number(document.getElementById('foodCalories').value)||0),
+    protein:Math.max(0,Number(document.getElementById('foodProtein').value)||0),
+    carbs:Math.max(0,Number(document.getElementById('foodCarbs').value)||0),
+    fat:Math.max(0,Number(document.getElementById('foodFat').value)||0)
+  };
+  if(!item.name){ showToast('Besin adı gir'); return; }
+  const idx=(D.nutrition.foods||[]).findIndex(function(f){ return f.id===id; });
+  if(idx>=0) D.nutrition.foods[idx]=item; else D.nutrition.foods.push(item);
+  sv(); renderFoodManagerList(); renderFoodPicker(); renderNutrition(); resetFoodForm(); showToast('Besin kaydedildi');
+}
+function editFoodItem(id){
+  const f=getFoodById(id); if(!f) return;
+  document.getElementById('foodEditId').value=f.id;
+  document.getElementById('foodName').value=f.name;
+  document.getElementById('foodBaseAmount').value=f.baseAmount;
+  document.getElementById('foodCalories').value=f.calories;
+  document.getElementById('foodProtein').value=f.protein;
+  document.getElementById('foodCarbs').value=f.carbs;
+  document.getElementById('foodFat').value=f.fat;
+  setFoodMode(f.mode);
+}
+function deleteFoodItem(id){
+  D.nutrition.foods=(D.nutrition.foods||[]).filter(function(f){ return f.id!==id; });
+  Object.keys(D.nutrition.logs||{}).forEach(function(day){
+    D.nutrition.logs[day].items=(D.nutrition.logs[day].items||[]).filter(function(it){ return it.foodId!==id; });
+  });
+  if(selectedFoodId===id) selectedFoodId=null;
+  sv(); renderFoodManagerList(); renderFoodPicker(); renderNutrition(); showToast('Besin silindi');
+}
+
 function renderAll(){
   try{ renderMap();      }catch(e){ console.warn('renderMap:',e); }
   try{ renderLevel();    }catch(e){ console.warn('renderLevel:',e); }
   try{ renderTargetCards(); }catch(e){ console.warn('renderTargetCards:',e); }
+  try{ renderNutrition(); }catch(e){ console.warn('renderNutrition:',e); }
   try{ renderStreak();   }catch(e){ console.warn('renderStreak:',e); }
   try{ renderTel();      }catch(e){ console.warn('renderTel:',e); }
   try{ renderSessions(); }catch(e){ console.warn('renderSessions:',e); }
@@ -1874,7 +2190,7 @@ function st(msg){ console.log(msg); }
 (function(){
   var SK = 'hd_v1';
   var PARAMS = [
-    {id:'zeka',         name:'Zeka',         abbr:'ZK', color:'#61a8de'},
+    {id:'zeka',         name:'Zeka',         abbr:'ZK', color:'#ff9a6b'},
     {id:'dayaniklilik', name:'Dayaniklilik',  abbr:'DY', color:'#61de8a'},
     {id:'esneklik',     name:'Esneklik',      abbr:'ES', color:'#ffb59a'},
     {id:'guc',          name:'Guc',           abbr:'GC', color:'#d4a0ff'},
@@ -2442,6 +2758,86 @@ function st(msg){ console.log(msg); }
       <button class="sub" style="background:var(--stop);color:var(--text-dim);flex:1" onclick="hCloseAdd()">IPTAL</button>
       <button class="sub" style="flex:2" onclick="hSaveHabit()">KAYDET</button>
     </div>
+  </div>
+</div>
+
+
+<!-- NUTRITION TARGET SHEET -->
+<div class="ovl" id="nutTargetOvl" onclick="closeNutritionTargets()"></div>
+<div class="bs" id="nutTargetSheet">
+  <div class="bsh"></div>
+  <div class="bst"><span class="bstl">Besin Hedefleri</span><button class="bsc" onclick="closeNutritionTargets()">✕</button></div>
+  <div class="bsb">
+    <div class="nut-inline-grid">
+      <div class="fg"><label class="fl">Kalori Hedefi</label><input class="fi2" type="number" id="nutTargetCalories" min="0" step="1" placeholder="2036"></div>
+      <div class="fg"><label class="fl">Protein Hedefi</label><input class="fi2" type="number" id="nutTargetProtein" min="0" step="0.1" placeholder="163"></div>
+      <div class="fg"><label class="fl">Karbonhidrat Hedefi</label><input class="fi2" type="number" id="nutTargetCarbs" min="0" step="0.1" placeholder="238"></div>
+      <div class="fg"><label class="fl">Yağ Hedefi</label><input class="fi2" type="number" id="nutTargetFat" min="0" step="0.1" placeholder="48"></div>
+      <div class="fg"><label class="fl">Su Hedefi</label><input class="fi2" type="number" id="nutTargetWater" min="0" step="50" placeholder="2500"></div>
+    </div>
+    <button class="sub" onclick="saveNutritionTargets()">KAYDET</button>
+  </div>
+</div>
+
+<!-- NUTRITION LOG SHEET -->
+<div class="ovl" id="nutLogOvl" onclick="closeNutritionLog()"></div>
+<div class="bs" id="nutLogSheet">
+  <div class="bsh"></div>
+  <div class="bst"><span class="bstl">Besin Ekle</span><button class="bsc" onclick="closeNutritionLog()">✕</button></div>
+  <div class="bsb">
+    <div class="fg">
+      <label class="fl">Kayıtlı Besinler</label>
+      <div class="esw"><span class="material-symbols-outlined">search</span><input type="text" class="es" id="nutFoodSearch" placeholder="Besin ara..." oninput="renderFoodPicker()"></div>
+      <div class="el" id="nutritionFoodList"></div>
+    </div>
+    <div class="fg">
+      <label class="fl">Miktar</label>
+      <div class="nut-inline-grid">
+        <div><input class="fi2" type="number" min="0" step="0.1" id="nutQty" placeholder="100"></div>
+        <div><input class="fi2" type="text" id="nutQtyUnit" readonly placeholder="g/adet"></div>
+      </div>
+    </div>
+    <div class="fg">
+      <label class="fl">Su Ekle</label>
+      <div class="nut-chip-row">
+        <button class="nut-chip" onclick="quickAddWater(250)">250 ml</button>
+        <button class="nut-chip" onclick="quickAddWater(500)">500 ml</button>
+        <button class="nut-chip" onclick="quickAddWater(1000)">1000 ml</button>
+      </div>
+    </div>
+    <button class="sub" onclick="saveNutritionEntry()">BUGÜNE EKLE</button>
+    <div style="height:10px"></div>
+    <button class="sub" style="background:rgba(97,168,222,.14);color:#ffb59a" onclick="openFoodManager()">BESİN YÖNETİMİ</button>
+  </div>
+</div>
+
+<!-- FOOD MANAGER SHEET -->
+<div class="ovl" id="foodMgrOvl" onclick="closeFoodManager()"></div>
+<div class="bs" id="foodMgrSheet">
+  <div class="bsh"></div>
+  <div class="bst"><span class="bstl">Besin Yönetimi</span><button class="bsc" onclick="closeFoodManager()">✕</button></div>
+  <div class="bsb">
+    <input type="hidden" id="foodEditId">
+    <div class="fg"><label class="fl">Besin Adı</label><input class="fi2" id="foodName" placeholder="Örn: Haşlanmış Tavuk"></div>
+    <div class="fg">
+      <label class="fl">Ölçü Türü</label>
+      <div class="nut-chip-row">
+        <button class="nut-chip on" id="foodModeGram" onclick="setFoodMode('g')">Gram Bazlı</button>
+        <button class="nut-chip" id="foodModePiece" onclick="setFoodMode('adet')">Adet Bazlı</button>
+      </div>
+    </div>
+    <div class="nut-inline-grid">
+      <div class="fg"><label class="fl">Temel Miktar</label><input class="fi2" type="number" id="foodBaseAmount" min="0.1" step="0.1" placeholder="100"></div>
+      <div class="fg"><label class="fl">Birim</label><input class="fi2" type="text" id="foodBaseUnit" readonly value="g"></div>
+      <div class="fg"><label class="fl">Kalori</label><input class="fi2" type="number" id="foodCalories" min="0" step="0.1" placeholder="165"></div>
+      <div class="fg"><label class="fl">Protein</label><input class="fi2" type="number" id="foodProtein" min="0" step="0.1" placeholder="31"></div>
+      <div class="fg"><label class="fl">Karbonhidrat</label><input class="fi2" type="number" id="foodCarbs" min="0" step="0.1" placeholder="0"></div>
+      <div class="fg"><label class="fl">Yağ</label><input class="fi2" type="number" id="foodFat" min="0" step="0.1" placeholder="3.6"></div>
+    </div>
+    <button class="sub" onclick="saveFoodItem()">BESİNİ KAYDET</button>
+    <div style="height:14px"></div>
+    <div class="shdr"><label class="fl" style="margin-bottom:0">Kayıtlı Besinler</label></div>
+    <div id="foodManagerList" class="nut-loglist"></div>
   </div>
 </div>
 

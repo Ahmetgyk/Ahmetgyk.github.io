@@ -297,7 +297,7 @@ main{padding:76px 16px 100px;display:flex;flex-direction:column;gap:24px}
 
 /* BULK PLANS */
 .plan-card{border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
-.plan-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#ff6b2b}
+.plan-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#61a8de}
 .plan-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .plan-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
 .plan-meta{font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
@@ -538,7 +538,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
     <button class="hbtn" onclick="openMetrics()" title="Ölçümler"><span class="material-symbols-outlined">straighten</span></button>
     <button class="hbtn" title="Hareket Yönetimi" onclick="openExMgr()" style="color:var(--primary)"><span class="material-symbols-outlined">fitness_center</span></button>
     <button class="hbtn" onclick="openTargetMgr()" title="Hedef Yönetimi" style="color:#ff6b2b"><span class="material-symbols-outlined">track_changes</span></button>
-    <button class="hbtn" onclick="openPlanMgr()" title="Toplu Antrenmanlar" style="color:#ff6b2b"><span class="material-symbols-outlined">format_list_bulleted</span></button>
+    <button class="hbtn" onclick="openPlanMgr()" title="Toplu Antrenmanlar" style="color:#61a8de"><span class="material-symbols-outlined">format_list_bulleted</span></button>
     <button class="hbtn" onclick="exportBackup()" title="Yedek Al" style="color:var(--green)"><span class="material-symbols-outlined">download</span></button>
     <button class="hbtn" onclick="document.getElementById('backupInp').click()" title="Yedek Yükle" style="color:#61a8de"><span class="material-symbols-outlined">upload</span></button>
     <input type="file" id="backupInp" accept=".json" style="display:none" onchange="importBackup(this)">
@@ -692,7 +692,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
 <section>
   <div class="sh">
     <span class="st">Toplu Antrenmanlar</span>
-    <button onclick="openPlanMgr()" style="background:transparent;border:none;color:#ff6b2b;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">YÖNET</button>
+    <button onclick="openPlanMgr()" style="background:transparent;border:none;color:#61a8de;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">YÖNET</button>
   </div>
   <div class="ssl" id="planList"></div>
 </section>
@@ -752,6 +752,15 @@ body.habit-mode .logo-name span{color:#4a9eff}
       <div class="shdr"><label class="fl" style="margin:0">Setler</label><span style="font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint)">TEKRAR × KİLO</span></div>
       <div class="slist" id="setsList"></div>
       <button class="asb" onclick="addSet()">+ SET EKLE</button>
+      <div class="fg" style="margin-top:12px">
+        <label class="fl">Toplu Set Girişi</label>
+        <input type="text" class="fi2" id="bulkSetInp" placeholder="Örn: 12x60, 10x55, 8x50 veya 5x10x50">
+        <div style="margin-top:6px;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);line-height:1.6">
+          <div>Farklı setler: 12x60, 10x55, 8x50</div>
+          <div>Aynı set tekrar: 5x10x50 → 5 set 10 tekrar 50 kg</div>
+        </div>
+      </div>
+      <button class="asb" onclick="applyBulkSets()">TOPLU SET UYGULA</button>
     </div>
     <div class="fg" style="margin-top:14px">
       <label class="fl">Antrenman Adı (isteğe bağlı)</label>
@@ -1221,11 +1230,10 @@ function calcExerciseTargetPreview(ex){
       gain=Math.round(durMins*intMult*cf);
     }else{
       let volume=0, repsOnly=0;
-      for(let i=1;i<=nSets;i++){
-        const reps=parseInt(document.getElementById('r'+i)?.value)||0;
-        const kg=isBW?0:(parseFloat(document.getElementById('k'+i)?.value)||0);
-        repsOnly+=reps; volume+=reps*(kg||1);
-      }
+      getActiveWorkoutSets().forEach(function(s){
+        repsOnly+=s.reps;
+        volume+=s.reps*(s.kg||1);
+      });
       gain=Math.round(isBW ? repsOnly*1.5*cf : volume*0.05*cf);
     }
     const tg=(D.customTargets||[]).find(function(t){ return t.id===id; });
@@ -1465,10 +1473,76 @@ function renderMatrix(){
 }
 
 // ── WORKOUT SHEET ──
-let selEx=null,isBW=false,nSets=1,durMins=60,intensity='mid';
+let selEx=null,isBW=false,nSets=1,durMins=60,intensity='mid',wkSets=[];
+
+function resetWorkoutSets(){
+  wkSets=[{reps:'',kg:''}];
+  nSets=wkSets.length;
+}
+function syncSetValue(idx,key,val){
+  if(!wkSets[idx]) wkSets[idx]={reps:'',kg:''};
+  wkSets[idx][key]=val;
+  nSets=wkSets.length;
+  renderWorkoutTargetPreview();
+}
+function getActiveWorkoutSets(){
+  return (wkSets||[]).map(function(s){
+    return {
+      reps: Math.max(0, parseInt(s?.reps)||0),
+      kg: isBW ? 0 : Math.max(0, parseFloat(s?.kg)||0)
+    };
+  }).filter(function(s){ return s.reps>0; });
+}
+function parseBulkSetInput(raw){
+  const txt=(raw||'').trim();
+  if(!txt) return [];
+
+  const compact=txt.replace(/\s+/g,'');
+  const sameMatch=compact.match(/^(\d+)x(\d+)(?:x([0-9]+(?:[\.,][0-9]+)?))?$/i);
+  if(sameMatch){
+    const count=parseInt(sameMatch[1],10)||0;
+    const reps=parseInt(sameMatch[2],10)||0;
+    const kgVal=(sameMatch[3]||'0').replace(',', '.');
+    const kg=parseFloat(kgVal)||0;
+    if(count>0 && reps>0){
+      return Array.from({length:count}, function(){ return {reps:reps,kg:kg}; });
+    }
+  }
+
+  return compact.split(/[;,]/).map(function(part){
+    const pieces=part.split('x');
+    if(pieces.length<2) return null;
+    const reps=parseInt(pieces[0],10)||0;
+    const kg=parseFloat((pieces[1]||'0').replace(',', '.'))||0;
+    if(reps<=0) return null;
+    return {reps:reps,kg:kg};
+  }).filter(Boolean);
+}
+
+function applyBulkSets(){
+  if(selEx && selEx.type==='duration'){
+    showToast('Süre bazlı hareketlerde toplu set kullanılmaz');
+    return;
+  }
+  const inp=document.getElementById('bulkSetInp');
+  const parsed=parseBulkSetInput(inp?.value||'');
+  if(!parsed.length){
+    showToast('Format: 12x60,10x55 veya 5x10x50');
+    return;
+  }
+  wkSets=parsed.map(function(s){ return {reps:String(s.reps),kg:String(s.kg||0)}; });
+  if(isBW) wkSets=wkSets.map(function(s){ return {reps:s.reps,kg:''}; });
+  nSets=wkSets.length;
+  renderSets();
+  renderWorkoutTargetPreview();
+  showToast('Toplu set uygulandı');
+}
+
 function openWk(){
-  selEx=null;isBW=false;nSets=1;durMins=60;intensity='mid';
+  selEx=null;isBW=false;durMins=60;intensity='mid';
+  resetWorkoutSets();
   document.getElementById('esInp').value='';document.getElementById('snInp').value='';
+  const bulkInp=document.getElementById('bulkSetInp'); if(bulkInp) bulkInp.value='';
   document.getElementById('mTW').style.display='none';document.getElementById('bwK').classList.remove('on');
   document.getElementById('durSection').style.display='none';
   document.getElementById('setsSection').style.display='';
@@ -1496,17 +1570,26 @@ function pickEx(id){
   renderSets();
   renderWorkoutTargetPreview();
 }
-function toggleBW(){isBW=!isBW;document.getElementById('bwK').classList.toggle('on',isBW);renderSets();renderWorkoutTargetPreview();}
+function toggleBW(){
+  isBW=!isBW;
+  document.getElementById('bwK').classList.toggle('on',isBW);
+  if(isBW){ wkSets=wkSets.map(function(s){ return {reps:s.reps,kg:''}; }); }
+  renderSets();
+  renderWorkoutTargetPreview();
+}
 function renderSets(){
   const c=document.getElementById('setsList');c.innerHTML='';
-  for(let i=1;i<=nSets;i++){
+  nSets=wkSets.length||1;
+  if(!wkSets.length) resetWorkoutSets();
+  wkSets.forEach(function(set,idx){
+    const i=idx+1;
     const r=document.createElement('div');r.className='srow';
-    r.innerHTML=`<span class="sn">S${i}</span><input class="sf" type="number" inputmode="numeric" id="r${i}" placeholder="Tekrar" min="1" oninput="renderWorkoutTargetPreview()">${!isBW?`<span class="ssep">×</span><input class="sf" type="number" inputmode="decimal" id="k${i}" placeholder="kg" min="0" step="0.5" oninput="renderWorkoutTargetPreview()">`:''}${nSets>1?`<button class="sdel" onclick="remSet(${i})">−</button>`:''}`;
+    r.innerHTML=`<span class="sn">S${i}</span><input class="sf" type="number" inputmode="numeric" value="${set.reps ?? ''}" placeholder="Tekrar" min="1" oninput="syncSetValue(${idx},'reps',this.value)">${!isBW?`<span class="ssep">×</span><input class="sf" type="number" inputmode="decimal" value="${set.kg ?? ''}" placeholder="kg" min="0" step="0.5" oninput="syncSetValue(${idx},'kg',this.value)">`:''}${wkSets.length>1?`<button class="sdel" onclick="remSet(${idx})">−</button>`:''}`;
     c.appendChild(r);
-  }
+  });
 }
-function addSet(){nSets++;renderSets();renderWorkoutTargetPreview();}
-function remSet(i){if(nSets<=1)return;nSets--;renderSets();renderWorkoutTargetPreview();}
+function addSet(){ wkSets.push({reps:'',kg:isBW?'':''}); nSets=wkSets.length; renderSets(); renderWorkoutTargetPreview(); }
+function remSet(i){ if(wkSets.length<=1) return; wkSets.splice(i,1); nSets=wkSets.length; renderSets(); renderWorkoutTargetPreview(); }
 // ── DURATION HELPERS ──
 function adjDur(delta){
   durMins=Math.max(15,Math.min(300,durMins+delta));
@@ -1544,12 +1627,8 @@ function submitWk(){
     totalKg=0; // cardio için kg yok
   } else {
     // Set/rep based scoring
-    const sets=[];
-    for(let i=1;i<=nSets;i++){
-      const reps=parseInt(document.getElementById(`r${i}`)?.value)||0;
-      const kg=isBW?0:(parseFloat(document.getElementById(`k${i}`)?.value)||0);
-      if(reps>0){sets.push({reps,kg});totalKg+=kg*reps;}
-    }
+    const sets=getActiveWorkoutSets();
+    sets.forEach(function(s){ totalKg+=s.kg*s.reps; });
     if(!sets.length){showToast('En az bir set gir!');return;}
     [...selEx.p,...selEx.s].forEach(m=>{
       const c=selEx.p.includes(m)?coefP:coefS;

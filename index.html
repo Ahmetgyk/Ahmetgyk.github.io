@@ -297,7 +297,7 @@ main{padding:76px 16px 100px;display:flex;flex-direction:column;gap:24px}
 
 /* BULK PLANS */
 .plan-card{border-radius:10px;padding:14px 16px;position:relative;overflow:hidden}
-.plan-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#61a8de}
+.plan-card::before{content:"";position:absolute;left:0;top:0;bottom:0;width:2px;background:#ff6b2b}
 .plan-top{display:flex;align-items:flex-start;justify-content:space-between;gap:12px}
 .plan-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
 .plan-meta{font-size:10px;color:var(--text-faint);font-family:'JetBrains Mono',monospace;text-transform:uppercase;letter-spacing:1px;margin-top:3px}
@@ -309,12 +309,12 @@ main{padding:76px 16px 100px;display:flex;flex-direction:column;gap:24px}
 .plan-btn.del{background:rgba(255,100,100,.1);color:#ff9090;border:1px solid rgba(255,100,100,.2)}
 .pm-row{background:var(--sdim);border:1px solid rgba(89,65,56,.12);border-radius:8px;padding:10px 12px;display:flex;flex-direction:column;gap:8px}
 .pm-row-top{display:flex;align-items:center;gap:8px}
-.pm-index{font-family:'JetBrains Mono',monospace;font-size:11px;color:#61a8de;width:26px;flex-shrink:0}
+.pm-index{font-family:'JetBrains Mono',monospace;font-size:11px;color:#ff6b2b;width:26px;flex-shrink:0}
 .pm-del{margin-left:auto;background:transparent;border:none;color:var(--text-faint);cursor:pointer;font-size:18px;line-height:1}
 .pm-grid{display:grid;grid-template-columns:1fr 1fr 1fr;gap:8px}
 .pm-grid-2{display:grid;grid-template-columns:1fr 1fr;gap:8px}
 .pm-mini{font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-bottom:4px}
-.pr-card{background:var(--sdim);border:1px solid rgba(89,65,56,.14);border-left:3px solid #61a8de;border-radius:10px;padding:14px 16px;margin-bottom:12px}
+.pr-card{background:var(--sdim);border:1px solid rgba(89,65,56,.14);border-left:3px solid #ff6b2b;border-radius:10px;padding:14px 16px;margin-bottom:12px}
 .pr-step{font-family:'JetBrains Mono',monospace;font-size:10px;color:#8ec8ff;text-transform:uppercase;letter-spacing:1px;margin-bottom:6px}
 .pr-name{font-family:'Barlow Condensed',sans-serif;font-size:24px;font-weight:800;letter-spacing:1px;text-transform:uppercase;margin-bottom:8px}
 .pr-meta{display:flex;flex-wrap:wrap;gap:6px;margin-bottom:10px}
@@ -322,10 +322,10 @@ main{padding:76px 16px 100px;display:flex;flex-direction:column;gap:24px}
 .pr-list{display:flex;flex-direction:column;gap:8px;margin-bottom:12px}
 .pr-item{background:var(--sdim);border-radius:8px;padding:10px 12px;border:1px solid rgba(89,65,56,.12)}
 .pr-item.done{border-left:3px solid var(--green)}
-.pr-item.cur{border-left:3px solid #61a8de}
+.pr-item.cur{border-left:3px solid #ff6b2b}
 .pr-act{display:flex;gap:8px;flex-wrap:wrap}
 .pr-btn{flex:1;min-width:120px;padding:12px;border:none;border-radius:8px;cursor:pointer;font-family:'Barlow Condensed',sans-serif;font-size:15px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase}
-.pr-btn.primary{background:#61a8de;color:#fff}
+.pr-btn.primary{background:#ff6b2b;color:#fff}
 .pr-btn.ghost{background:var(--stop);color:var(--text-dim)}
 .pr-btn.warn{background:rgba(255,100,100,.14);color:#ff9090;border:1px solid rgba(255,100,100,.22)}
 
@@ -497,7 +497,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
 .goal-name{font-family:'Barlow Condensed',sans-serif;font-size:17px;font-weight:700;letter-spacing:.7px;text-transform:uppercase}
 .goal-unit{font-family:'JetBrains Mono',monospace;font-size:9px;color:var(--text-faint);text-transform:uppercase;letter-spacing:1px;margin-top:2px}
 .goal-lvl{background:rgba(255,107,43,.08);border:1px solid rgba(255,107,43,.2);border-radius:5px;padding:5px 8px;text-align:right;min-width:58px}
-.goal-lvl strong{display:block;font-family:'JetBrains Mono',monospace;font-size:16px;color:#61a8de;line-height:1}
+.goal-lvl strong{display:block;font-family:'JetBrains Mono',monospace;font-size:16px;color:#ff6b2b;line-height:1}
 .goal-lvl span{font-family:'Barlow Condensed',sans-serif;font-size:9px;color:var(--text-faint);letter-spacing:1px;text-transform:uppercase}
 .goal-progress{margin-top:10px}
 .goal-meta{display:flex;justify-content:space-between;font-family:'JetBrains Mono',monospace;font-size:10px;color:var(--text-faint);margin-bottom:6px;gap:10px}
@@ -535,17 +535,14 @@ body.habit-mode .logo-name span{color:#4a9eff}
     <span class="logo-name" id="logo-text">Ahmet <span>·</span> FORM</span>
   </div>
   <div class="hdr-r" id="hdr-form">
-    <button class="hbtn" onclick="openMetrics()" title="Ölçümler"><span class="material-symbols-outlined">straighten</span></button>
     <button class="hbtn" title="Hareket Yönetimi" onclick="openExMgr()" style="color:var(--primary)"><span class="material-symbols-outlined">fitness_center</span></button>
-    <button class="hbtn" onclick="openTargetMgr()" title="Hedef Yönetimi" style="color:#ff6b2b"><span class="material-symbols-outlined">track_changes</span></button>
-    <button class="hbtn" onclick="openPlanMgr()" title="Toplu Antrenmanlar" style="color:#61a8de"><span class="material-symbols-outlined">format_list_bulleted</span></button>
     <button class="hbtn" onclick="exportBackup()" title="Yedek Al" style="color:var(--green)"><span class="material-symbols-outlined">download</span></button>
     <button class="hbtn" onclick="document.getElementById('backupInp').click()" title="Yedek Yükle" style="color:#61a8de"><span class="material-symbols-outlined">upload</span></button>
     <input type="file" id="backupInp" accept=".json" style="display:none" onchange="importBackup(this)">
     <button class="hbtn" onclick="openReset()" title="Sıfırla" style="color:#ff6b6b"><span class="material-symbols-outlined">restart_alt</span></button>
   </div>
   <div class="hdr-r" id="hdr-habit" style="display:none">
-    <button class="hbtn" onclick="hExport()" title="Yedek Al" style="color:#61de8a"><span class="material-symbols-outlined">download</span></button>
+    <button class="hbtn" onclick="hExport()" title="Yedek Al" style="color:#ff6b2b"><span class="material-symbols-outlined">download</span></button>
     <button class="hbtn" onclick="document.getElementById('hBackupInp').click()" title="Yedek Yükle" style="color:#61a8de"><span class="material-symbols-outlined">upload</span></button>
     <input type="file" id="hBackupInp" accept=".json" style="display:none" onchange="hImport(this)">
     <button class="hbtn" onclick="hResetConfirm()" title="Sifirla" style="color:#ff6b6b"><span class="material-symbols-outlined">restart_alt</span></button>
@@ -692,7 +689,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
 <section>
   <div class="sh">
     <span class="st">Toplu Antrenmanlar</span>
-    <button onclick="openPlanMgr()" style="background:transparent;border:none;color:#61a8de;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">YÖNET</button>
+    <button onclick="openPlanMgr()" style="background:transparent;border:none;color:#ff6b2b;font-family:'Barlow Condensed',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;cursor:pointer;text-transform:uppercase">YÖNET</button>
   </div>
   <div class="ssl" id="planList"></div>
 </section>
@@ -2015,7 +2012,7 @@ function renderTargetMgrList(){
     return '<div class="mh-entry" style="padding:12px 14px">'+
       '<div style="display:flex;justify-content:space-between;gap:10px;align-items:flex-start">'+
         '<div><div style="font-size:14px;color:var(--on);font-weight:600">'+t.name+'</div><div style="font-size:10px;color:var(--text-faint);font-family:JetBrains Mono,monospace">L'+t.level+' · '+(t.score||0)+' / '+goal+' · '+(t.unit||'puan')+'</div></div>'+
-        '<div style="display:flex;gap:6px"><button class="mh-del" style="background:rgba(97,222,138,.12);color:var(--green)" onclick="editTarget(\''+t.id+'\')">✏ Düzenle</button><button class="mh-del" onclick="deleteTarget(\''+t.id+'\')">× Sil</button></div>'+
+        '<div style="display:flex;gap:6px"><button class="mh-del" style="background:rgba(97,222,138,.12);color:var(--green)" onclick="editTarget(\''+t.id+'\')">Düzenle</button><button class="mh-del" onclick="deleteTarget(\''+t.id+'\')">Sil</button></div>'+
       '</div>'+
       '<div class="goal-progress" style="margin-top:10px"><div class="goal-track"><div class="goal-fill" style="width:'+pct+'%"></div></div></div>'+
       (t.desc?'<div class="goal-note">'+t.desc+'</div>':'')+

@@ -940,7 +940,7 @@ body.habit-mode .logo-name span{color:#4a9eff}
 <div class="toast" id="toast"></div>
 
 <script>
-const DEFAULT_FIELDS=[{k:'boy',l:'Boy',u:'cm'},{k:'kilo',l:'Kilo',u:'kg'},{k:'gogus',l:'Göğüs',u:'cm'},{k:'bel',l:'Bel',u:'cm'},{k:'kalca',l:'Kalça',u:'cm'},{k:'bicep',l:'Bisep',u:'cm'},{k:'but',l:'But',u:'cm'},{k:'baldir',l:'Baldır',u:'cm'}];
+const DEFAULT_FIELDS=[{k:'boy',l:'Boy',u:'cm'},{k:'kilo',l:'Kilo',u:'kg'},{k:'gogus',l:'Göğüs',u:'cm'},{k:'bel',l:'Bel',u:'cm'},{k:'kalca',l:'Kalça',u:'cm'},{k:'bicep',l:'Bisep',u:'cm'},{k:'baldir',l:'Baldır',u:'cm'}];
 function getMCFG(){ return (D&&D.metFields&&D.metFields.length>0)?D.metFields:DEFAULT_FIELDS; }
 var MCFG=DEFAULT_FIELDS.slice();
 
@@ -1178,6 +1178,35 @@ const BUILT_EX=[
   {id:'cycling_stationary',type:'duration', name:'Bisiklet — Sabit Bisiklet',
     p:['quads','glutes','hamstrings','calves'],
     s:['tibialis','abs_lower','lower_back'],bw:1,coefP:0.75,coefS:0.3},
+    
+    // ── WRIST / FOREARM ──
+	{id:'rev_curl',name:'Reverse Curl',p:['wrist_extensor'],s:['biceps']},
+	{id:'wrist_roll',name:'Wrist Roller',p:['wrist_extensor','wrist_flexor'],s:[]},
+	{id:'farmer',name:'Farmer Carry',p:['wrist_extensor','wrist_flexor'],s:['traps','lats_upper']},
+	{id:'plate_pinch',name:'Plate Pinch Hold',p:['wrist_extensor','wrist_flexor'],s:[]},
+	{id:'band_wrist_ext',name:'Band Wrist Extension',p:['wrist_extensor'],s:[]},
+	{id:'band_wrist_flex',name:'Band Wrist Flexion',p:['wrist_flexor'],s:[]},
+
+	// ── NECK ──
+	{id:'neck_flex',name:'Neck Flexion',p:['neck'],s:[]},
+	{id:'neck_ext',name:'Neck Extension',p:['neck'],s:['traps']},
+	{id:'neck_lat',name:'Neck Lateral Flexion',p:['neck'],s:[]},
+	{id:'neck_rot',name:'Neck Rotation',p:['neck'],s:[]},
+	{id:'band_neck',name:'Band Neck Resistance',p:['neck'],s:['traps']},
+
+	// ── HOME / FUNCTIONAL (EQUIPMENT-BASED) ──
+	{id:'band_row',name:'Resistance Band Row',p:['lats_upper','lats_lower'],s:['biceps','traps']},
+	{id:'band_facepull',name:'Band Face Pull',p:['deltoid_rear'],s:['traps','rhomboid']},
+	{id:'band_pullapart',name:'Band Pull Apart',p:['deltoid_rear'],s:['traps']},
+	{id:'band_chestpress',name:'Band Chest Press',p:['pecs'],s:['triceps','deltoid_front']},
+	{id:'db_row',name:'Dumbbell Row',p:['lats_upper','lats_lower'],s:['biceps','traps']},
+	{id:'db_ohp',name:'Dumbbell Overhead Press',p:['deltoid_front','deltoid_side'],s:['triceps']},
+	{id:'db_rdl',name:'Dumbbell Romanian Deadlift',p:['hamstrings','glutes'],s:['lower_back']},
+	{id:'db_stepup',name:'Dumbbell Step-Up',p:['quads','glutes'],s:['hamstrings','calves']},
+	{id:'bar_hang',name:'Dead Hang (Barfiks Tutuş)',p:['wrist_extensor','wrist_flexor'],s:['lats_upper','traps'],bw:1},
+	{id:'bar_knee_raise',name:'Hanging Knee Raise',p:['abs_lower'],s:['abs_upper','lats_upper'],bw:1},
+	{id:'band_squat',name:'Band Squat',p:['quads','glutes'],s:['hamstrings']},
+	{id:'band_deadlift',name:'Band Deadlift',p:['glutes','hamstrings'],s:['lower_back']},
 ];
 const MN={"wrist_extensor": "Bilek Üstü", "wrist_flexor": "Bilek Altı", "pecs": "Göğüs", "deltoid_front": "Ön Omuz", "deltoid_side": "Yan Omuz", "biceps": "Biseps", "abs_upper": "Üst Karın", "abs_lower": "Alt Karın", "obliques": "Yan Karın", "serratus": "Serratus", "adonis": "Adonis / V-line", "adductor": "İç Bacak", "quads": "Ön Bacak", "tibialis": "Kaval Kası", "traps": "Trapez", "deltoid_rear": "Arka Omuz", "triceps": "Triseps", "lats_upper": "Sırt Üst", "lats_lower": "Sırt Alt", "rhomboid": "Rhomboid", "lower_back": "Alt Sırt", "glutes": "Kalça", "hamstrings": "Arka Bacak", "calves": "Baldır", "neck": "Boyun"};
 const MLIST=Object.entries(MN).map(([k,v])=>({k,v}));
@@ -1209,7 +1238,7 @@ function applyTargetGain(targetId,gain){
   while(t.score>=getTargetGoal(t) && loops<20){
     t.score-=getTargetGoal(t);
     t.level=(Number(t.level)||1)+1;
-    showToast('🎯 '+t.name+' seviye '+t.level+' oldu');
+    showToast(''+t.name+' seviye '+t.level+' oldu');
     loops++;
   }
 }

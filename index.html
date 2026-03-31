@@ -959,6 +959,7 @@ const DEFAULT_FOODS=[
   {id:'yogurt',name:'Yoğurt',mode:'g',baseAmount:100,calories:61,protein:3.5,carbs:4.7,fat:3.3},
   {id:'potato',name:'Patates',mode:'g',baseAmount:100,calories:77,protein:2,carbs:17,fat:0.1}
 ];
+
 function defaultNutrition(){
   return {
     targets:{calories:2036,protein:163,carbs:238,fat:48,water:2500},
@@ -1209,6 +1210,124 @@ const BUILT_EX=[
 	{id:'band_deadlift',name:'Band Deadlift',p:['glutes','hamstrings'],s:['lower_back']},
 ];
 const MN={"wrist_extensor": "Bilek Üstü", "wrist_flexor": "Bilek Altı", "pecs": "Göğüs", "deltoid_front": "Ön Omuz", "deltoid_side": "Yan Omuz", "biceps": "Biseps", "abs_upper": "Üst Karın", "abs_lower": "Alt Karın", "obliques": "Yan Karın", "serratus": "Serratus", "adonis": "Adonis / V-line", "adductor": "İç Bacak", "quads": "Ön Bacak", "tibialis": "Kaval Kası", "traps": "Trapez", "deltoid_rear": "Arka Omuz", "triceps": "Triseps", "lats_upper": "Sırt Üst", "lats_lower": "Sırt Alt", "rhomboid": "Rhomboid", "lower_back": "Alt Sırt", "glutes": "Kalça", "hamstrings": "Arka Bacak", "calves": "Baldır", "neck": "Boyun"};
+
+const DEFAULT_BULK_PLANS = [
+  {
+    id:'plan_arm',
+    name:'Kol Antrenmanı',
+    note:'Biceps + triceps + bilek odaklı bölgesel antrenman',
+    items:[
+      {exerciseId:'bcurl',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'hammer',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'chin',sets:4,reps:8,weight:0,bodyweight:1,duration:60,intensity:'high'},
+      {exerciseId:'text',sets:4,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'skull',sets:3,reps:10,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'dips',sets:3,reps:8,weight:0,bodyweight:1,duration:60,intensity:'high'},
+      {exerciseId:'wrist_roll',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'band_wrist_ext',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'},
+      {exerciseId:'band_wrist_flex',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'}
+    ]
+  },
+  {
+    id:'plan_legs',
+    name:'Bacak Antrenmanı',
+    note:'Quadriceps + hamstring + glute odaklı bölgesel antrenman',
+    items:[
+      {exerciseId:'gob',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'high'},
+      {exerciseId:'bulg',sets:4,reps:10,weight:0,bodyweight:1,duration:60,intensity:'high'},
+      {exerciseId:'lunge',sets:3,reps:12,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'db_rdl',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'high'},
+      {exerciseId:'calf',sets:4,reps:15,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'band_squat',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'band_deadlift',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'}
+    ]
+  },
+  {
+    id:'plan_core',
+    name:'Karın & Core',
+    note:'Karın ve gövde stabilitesi odaklı bölgesel antrenman',
+    items:[
+      {exerciseId:'crunch',sets:4,reps:20,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'plank',sets:3,reps:1,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'lgr',sets:4,reps:15,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'twist',sets:3,reps:20,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'mtc',sets:3,reps:20,weight:0,bodyweight:1,duration:60,intensity:'high'},
+      {exerciseId:'bar_knee_raise',sets:3,reps:12,weight:0,bodyweight:1,duration:60,intensity:'high'}
+    ]
+  },
+  {
+    id:'plan_neck_trap',
+    name:'Boyun & Trapez',
+    note:'Boyun, trapez ve tutuş gücü odaklı antrenman',
+    items:[
+      {exerciseId:'neck_flex',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'},
+      {exerciseId:'neck_ext',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'},
+      {exerciseId:'neck_lat',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'},
+      {exerciseId:'band_neck',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'},
+      {exerciseId:'shrug',sets:4,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'farmer',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'high'},
+      {exerciseId:'bar_hang',sets:3,reps:1,weight:0,bodyweight:1,duration:45,intensity:'mid'}
+    ]
+  },
+  {
+    id:'plan_upper_mix',
+    name:'Üst Vücut Komple',
+    note:'Kol + bilek + omuz + trapez + göğüs + kanat',
+    items:[
+      {exerciseId:'pushup',sets:4,reps:15,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'band_chestpress',sets:4,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'pup',sets:4,reps:8,weight:0,bodyweight:1,duration:60,intensity:'high'},
+      {exerciseId:'db_row',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'high'},
+      {exerciseId:'db_ohp',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'lat',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'shrug',sets:4,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'bcurl',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'hammer',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'text',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'wrist_roll',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'band_wrist_ext',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'},
+      {exerciseId:'band_wrist_flex',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'low'}
+    ]
+  },
+  {
+    id:'plan_lower_mix',
+    name:'Alt Vücut + Core',
+    note:'Karın + bacak + kalça + sırt',
+    items:[
+      {exerciseId:'gob',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'high'},
+      {exerciseId:'bulg',sets:4,reps:10,weight:0,bodyweight:1,duration:60,intensity:'high'},
+      {exerciseId:'db_rdl',sets:4,reps:10,weight:0,bodyweight:0,duration:60,intensity:'high'},
+      {exerciseId:'band_deadlift',sets:3,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'calf',sets:4,reps:15,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'plank',sets:3,reps:1,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'crunch',sets:3,reps:20,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'lgr',sets:3,reps:15,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'twist',sets:3,reps:20,weight:0,bodyweight:1,duration:60,intensity:'mid'},
+      {exerciseId:'band_row',sets:4,reps:12,weight:0,bodyweight:0,duration:60,intensity:'mid'},
+      {exerciseId:'band_facepull',sets:3,reps:15,weight:0,bodyweight:0,duration:60,intensity:'mid'}
+    ]
+  }
+];
+function ensureDefaultBulkPlans(){
+  if(typeof D === 'undefined') return;
+  if(typeof DEFAULT_BULK_PLANS === 'undefined') return;
+
+  if(!Array.isArray(D.bulkPlans)) D.bulkPlans = [];
+
+  DEFAULT_BULK_PLANS.forEach(function(plan){
+    var exists = D.bulkPlans.some(function(p){
+      return p && p.id === plan.id;
+    });
+
+    if(!exists){
+      D.bulkPlans.push(JSON.parse(JSON.stringify(plan)));
+    }
+  });
+}
+
+ensureDefaultBulkPlans();
+sv();
+
 const MLIST=Object.entries(MN).map(([k,v])=>({k,v}));
 const allEx=()=>[...BUILT_EX,...(D.customEx||[])];
 const isCustom=id=>D.customEx?.some(c=>c.id===id);
